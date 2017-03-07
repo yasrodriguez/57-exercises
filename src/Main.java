@@ -5,8 +5,8 @@ import TipCalculator.*;
  */
 public class Main {
     public static void main (String args[]) {
-    //TipCalculator.execute();
-        TipCalculatorTester.execute();
+        TipCalculator.execute();
+        //TipCalculatorTester.execute();
     }
     }
 

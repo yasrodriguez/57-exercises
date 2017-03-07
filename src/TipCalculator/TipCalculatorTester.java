@@ -17,7 +17,7 @@ public class TipCalculatorTester {
         System.out.println ("   Tip %: " + tip);
         System.out.println ("");
         System.out.println ("Actual Results:");
-        calc.calculateTip();
+        calc.calculateAndPrintTotals();
         System.out.println ("");
         System.out.println ("Expected Results:");
         System.out.println ("   Tip: $10.00");
@@ -34,7 +34,7 @@ public class TipCalculatorTester {
         System.out.println ("   Tip %: " + tip);
         System.out.println ("");
         System.out.println ("Actual Results:");
-        calc2.calculateTip();
+        calc2.calculateAndPrintTotals();
         System.out.println ("");
         System.out.println ("Expected Results:");
         System.out.println ("   Tip: $3.30");
@@ -51,7 +51,7 @@ public class TipCalculatorTester {
         System.out.println ("   Tip %: " + tip);
         System.out.println ("");
         System.out.println ("Actual Results:");
-        calc3.calculateTip();
+        calc3.calculateAndPrintTotals();
         System.out.println ("");
         System.out.println ("Expected Results:");
         System.out.println ("   Tip: $11.70");
@@ -68,7 +68,7 @@ public class TipCalculatorTester {
         System.out.println ("   Tip %: " + tip);
         System.out.println ("");
         System.out.println ("Actual Results:");
-        calc4.calculateTip();
+        calc4.calculateAndPrintTotals();
         System.out.println ("");
         System.out.println ("Expected Results:");
         System.out.println ("   Tip: $5.18");
