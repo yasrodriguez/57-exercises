@@ -12,12 +12,14 @@ public class TipCalculator {
     private double billAmount;
     private double tipAmount;
     private double total;
+    private NumberFormat currency;
 
     public TipCalculator() {
         tipPercent = 0;
         billAmount = 0;
         tipAmount = 0;
         total= 0;
+        currency = NumberFormat.getCurrencyInstance(Locale.US);
     }
 
     public TipCalculator(double tipRate, double bill){
@@ -25,6 +27,7 @@ public class TipCalculator {
         billAmount = bill;
         tipAmount = 0;
         total = 0;
+        currency = NumberFormat.getCurrencyInstance(Locale.US);
     }
 
     private void getBillAmountAndTipRate() {
@@ -38,13 +41,19 @@ public class TipCalculator {
     public void calculateAndPrintTotals () {
         tipAmount = billAmount * tipPercent;
         total = billAmount + tipAmount;
-        NumberFormat currency = NumberFormat.getCurrencyInstance(Locale.US);
-        System.out.printf("Total tip: %s %n", currency.format(tipAmount));
-        System.out.printf("Total amount: %s %n", currency.format(total));
+        System.out.printf("Total tip: %s %n", getTipAmount());
+        System.out.printf("Total amount: %s %n", getTotal());
+    }
+
+    public String getTipAmount(){
+        return currency.format((tipAmount));
+    }
+
+    public String getTotal(){
+        return currency.format((total));
     }
 
     public static void execute () {
-
         TipCalculator calc = new TipCalculator();
         calc.getBillAmountAndTipRate();
         calc.calculateAndPrintTotals();
