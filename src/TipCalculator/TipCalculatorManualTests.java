@@ -5,12 +5,12 @@ package TipCalculator;
  */
 public class TipCalculatorManualTests {
     public static void execute () {
-        double tip;
-        double bill;
+        String tip;
+        String bill;
 
         //Test #1
-        tip = 10;
-        bill= 100;
+        tip = "10";
+        bill= "100";
         TipCalculator calc = new TipCalculator(tip, bill);
         System.out.println ("Test #1");
         System.out.println ("Inputs:");
@@ -26,8 +26,8 @@ public class TipCalculatorManualTests {
         System.out.println ("");
 
         //Test #2 - tip with decimals, round up
-        tip = 9.99;
-        bill= 33;
+        tip = "9.99";
+        bill= "33";
         TipCalculator calc2 = new TipCalculator(tip, bill);
         System.out.println ("Test #2");
         System.out.println ("Inputs:");
@@ -43,8 +43,8 @@ public class TipCalculatorManualTests {
         System.out.println ("");
 
         //Test #3 - bill with decimals, round down
-        tip = 20;
-        bill= 58.51;
+        tip = "20";
+        bill= "58.51";
         TipCalculator calc3 = new TipCalculator(tip, bill);
         System.out.println ("Test #3");
         System.out.println ("Inputs:");
@@ -60,8 +60,8 @@ public class TipCalculatorManualTests {
         System.out.println ("");
 
         //Test #4 - bill & tip with decimals
-        tip = 20.5;
-        bill= 25.25;
+        tip = "20.5";
+        bill= "25.25";
         TipCalculator calc4 = new TipCalculator(tip, bill);
         System.out.println ("Test #4");
         System.out.println ("Inputs:");
