@@ -19,89 +19,93 @@ public class TipCalculator {
     private String tipPercentTest;
     private String billAmountTest;
     private String warning;
+    private Scanner s;
 
     public TipCalculator() {
+        testMode = false;
+        tipPercentTest = "";
+        billAmountTest = "";
+        initialize();
+    }
+
+    public TipCalculator(String tipRateTest, String billTest){
+        testMode = true;
+        tipPercentTest = tipRateTest;
+        billAmountTest = billTest;
+        initialize();
+    }
+
+    public void initialize(){
         tipPercent = 0;
         billAmount = 0;
         tipAmount = 0;
         total= 0;
         currency = NumberFormat.getCurrencyInstance(Locale.US);
-        testMode = false;
         warning = "";
-    }
-
-    public TipCalculator(String tipRateTest, String billTest){
-        tipPercentTest = tipRateTest;
-        billAmountTest = billTest;
-        tipAmount = 0;
-        total = 0;
-        currency = NumberFormat.getCurrencyInstance(Locale.US);
-        testMode = true;
-        warning = "";
-    }
-
-    public void getBillAmountAndTipRate() {
-        if(testMode){
-            InputStream billTest = new ByteArrayInputStream(billAmountTest.getBytes());
-            System.setIn (billTest);
-            System.out.print (System.in);
-        }
-        else {
-
-            System.out.print("What is the bill amount: ");
-        }
-        boolean done = false;
-        Scanner s = new Scanner(System.in);
-        while (! done) {
-            if (s.hasNextDouble()){
-                billAmount = Double.parseDouble(s.nextLine());
-                done = true;
-            }
-            else {
-                warning = "You must enter a number. Please try again.";
-                System.out.println (warning);
-                if (testMode) {
-                    done = true;
-                }
-                else {
-                    s.nextLine();
-                }
-                }
-            }
-
-        if(testMode){
-            InputStream tipTest = new ByteArrayInputStream(tipPercentTest.getBytes());
-            System.setIn(tipTest);
-        }
-        else {
-            System.out.print("What is the tip rate: ");
-        }
-        done = false;
         s = new Scanner (System.in);
-        while (! done){
-            if (s.hasNextDouble()){
-                tipPercent = Double.parseDouble(s.nextLine()) / 100;
-                done = true;
-            }
-            else {
-                warning = "You must enter a number. Please try again.";
-                System.out.println (warning);
-                if (testMode) {
-                    done = true;
-                }
-                else{
-                    s.nextLine();
-                }
-            }
+    }
+
+    public void getInput(){
+        if (! testMode) {
+            print("What is the bill amount: ");
         }
+        else {
+           setMockInput(billAmountTest);
+                   }
+        billAmount = validate();
+        if (!testMode){
+            print ("What is the tip amount: ");
+        }
+        else {
+            setMockInput(tipPercentTest);
+        }
+        tipPercent = validate()/100;
     }
 
 
-    public void calculateAndPrintTotals () {
+    public void print(String message) {
+
+        System.out.println(message);
+    }
+
+    public void setMockInput(String testInput){
+
+        InputStream mockInput = new ByteArrayInputStream(testInput.getBytes());
+        System.setIn (mockInput);
+        s = new Scanner (System.in);
+          }
+
+    public double validate() {
+        boolean done = false;
+        double value = 0;
+        while (!done) {
+            if (s.hasNextDouble()) {
+                value = Double.parseDouble(s.nextLine());
+                done = true;
+            } else {
+                warning = "You must enter a number. Please try again.";
+                print(warning);
+                if (!testMode) {
+                    s.nextLine();
+                } else {
+                    break;
+                }
+            }
+        }
+        return value;
+    }
+
+    public void calculate () {
         tipAmount = billAmount * tipPercent;
-        total = billAmount + tipAmount;
         System.out.printf("Total tip: %s %n", getTipAmount());
+        total = billAmount + tipAmount;
         System.out.printf("Total amount: %s %n", getTotal());
+    }
+
+    public static void execute () {
+        TipCalculator calc = new TipCalculator();
+        calc.getInput();
+        calc.calculate();
     }
 
     public String getTipAmount(){
@@ -117,11 +121,5 @@ public class TipCalculator {
     public String getWarning(){
 
         return warning;
-    }
-
-    public static void execute () {
-        TipCalculator calc = new TipCalculator();
-        calc.getBillAmountAndTipRate();
-        calc.calculateAndPrintTotals();
     }
 }

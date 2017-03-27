@@ -1,7 +1,7 @@
 package TipCalculator;
 
 /**
- * Manual tests for the Tip Calculator program
+ * Manual Tests for the Tip Calculator program
  */
 public class TipCalculatorManualTests {
     public static void execute () {
@@ -18,7 +18,7 @@ public class TipCalculatorManualTests {
         System.out.println ("   Tip %: " + tip);
         System.out.println ("");
         System.out.println ("Actual Results:");
-        calc.calculateAndPrintTotals();
+        calc.calculate();
         System.out.println ("");
         System.out.println ("Expected Results:");
         System.out.println ("   Tip: $10.00");
@@ -35,7 +35,7 @@ public class TipCalculatorManualTests {
         System.out.println ("   Tip %: " + tip);
         System.out.println ("");
         System.out.println ("Actual Results:");
-        calc2.calculateAndPrintTotals();
+        calc2.calculate();
         System.out.println ("");
         System.out.println ("Expected Results:");
         System.out.println ("   Tip: $3.30");
@@ -52,7 +52,7 @@ public class TipCalculatorManualTests {
         System.out.println ("   Tip %: " + tip);
         System.out.println ("");
         System.out.println ("Actual Results:");
-        calc3.calculateAndPrintTotals();
+        calc3.calculate();
         System.out.println ("");
         System.out.println ("Expected Results:");
         System.out.println ("   Tip: $11.70");
@@ -69,7 +69,7 @@ public class TipCalculatorManualTests {
         System.out.println ("   Tip %: " + tip);
         System.out.println ("");
         System.out.println ("Actual Results:");
-        calc4.calculateAndPrintTotals();
+        calc4.calculate();
         System.out.println ("");
         System.out.println ("Expected Results:");
         System.out.println ("   Tip: $5.18");
