@@ -79,10 +79,19 @@ public class TipCalculator {
         boolean done = false;
         double value = 0;
         while (!done) {
-            if (s.hasNextDouble()) {
+            if (s.hasNextDouble()){
                 value = Double.parseDouble(s.nextLine());
-                done = true;
-            } else {
+                if (value >=0){
+                    done = true;
+                }
+                else {
+                    warning = "You must enter a positive number. Please try again.";
+                    print(warning);
+                    if (testMode){
+                        break;
+                    }
+                }
+            }else {
                 warning = "You must enter a number. Please try again.";
                 print(warning);
                 if (!testMode) {

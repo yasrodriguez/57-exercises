@@ -19,51 +19,71 @@ public class TipCalculatorTest {
 
     @Test
     public void decimalTipAndWholeBillAmount() {
-        TipCalculator calc2 = new TipCalculator("9.99", "33");
-        calc2.getInput();
-        calc2.calculate();
-        assertEquals("$3.30", calc2.getTipAmount());
-        assertEquals("$36.30", calc2.getTotal());
+        TipCalculator calc = new TipCalculator("9.99", "33");
+        calc.getInput();
+        calc.calculate();
+        assertEquals("$3.30", calc.getTipAmount());
+        assertEquals("$36.30", calc.getTotal());
     }
 
     @Test
     public void wholeTipAndDecimalBillAmount() {
-        TipCalculator calc3 = new TipCalculator("20", "58.51");
-        calc3.getInput();
-        calc3.calculate();
-        assertEquals("$11.70", calc3.getTipAmount());
-        assertEquals("$70.21", calc3.getTotal());
+        TipCalculator calc = new TipCalculator("20", "58.51");
+        calc.getInput();
+        calc.calculate();
+        assertEquals("$11.70", calc.getTipAmount());
+        assertEquals("$70.21", calc.getTotal());
     }
 
     @Test
     public void decimalTipAndDecimalBillAmount() {
-        TipCalculator calc4 = new TipCalculator("20.5", "25.25");
-        calc4.getInput();
-        calc4.calculate();
-        assertEquals("$5.18", calc4.getTipAmount());
-        assertEquals("$30.43", calc4.getTotal());
+        TipCalculator calc = new TipCalculator("20.5", "25.25");
+        calc.getInput();
+        calc.calculate();
+        assertEquals("$5.18", calc.getTipAmount());
+        assertEquals("$30.43", calc.getTotal());
     }
 
     @Test
     public void validationWhenBillAmountIsString() {
-        TipCalculator calc5 = new TipCalculator("10","b");
-        calc5.getInput();
-        assertEquals ("You must enter a number. Please try again.", calc5.getWarning() );
+        TipCalculator calc = new TipCalculator("10","b");
+        calc.getInput();
+        assertEquals ("You must enter a number. Please try again.", calc.getWarning() );
     }
 
     @Test
     public void validationWhenTipIsString() {
-        TipCalculator calc6 = new TipCalculator("a", "100");
-        calc6.getInput();
-        assertEquals("You must enter a number. Please try again.", calc6.getWarning());
+        TipCalculator calc = new TipCalculator("a", "100");
+        calc.getInput();
+        assertEquals("You must enter a number. Please try again.", calc.getWarning());
     }
 
     @Test
     public void validationWhenTipAndBillAreString() {
-        TipCalculator calc7 = new TipCalculator("abc", "*de");
-        calc7.getInput();
-        assertEquals("You must enter a number. Please try again.", calc7.getWarning());
+        TipCalculator calc = new TipCalculator("abc", "*de");
+        calc.getInput();
+        assertEquals("You must enter a number. Please try again.", calc.getWarning());
     }
 
+    @Test
+    public void validationWhenBillAmountIsNegative(){
+        TipCalculator calc = new TipCalculator("10", "-100");
+        calc.getInput();
+        assertEquals("You must enter a positive number. Please try again.", calc.getWarning());
+    }
+
+    @Test
+    public void validationWhenTipIsNegative(){
+        TipCalculator calc = new TipCalculator("-15", "100");
+        calc.getInput();
+        assertEquals("You must enter a positive number. Please try again.", calc.getWarning());
+    }
+
+    @Test
+    public void validationWhenBillAmountAndTipAreNegative(){
+        TipCalculator calc = new TipCalculator("-15", "-100");
+        calc.getInput();
+        assertEquals("You must enter a positive number. Please try again.", calc.getWarning());
+    }
 
 }
