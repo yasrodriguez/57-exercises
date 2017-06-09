@@ -54,7 +54,7 @@ public class TipCalculator {
                    }
         billAmount = validate();
         if (!testMode){
-            print ("What is the tip amount: ");
+            print ("What is the tip percent: ");
         }
         else {
             setMockInput(tipPercentTest);
