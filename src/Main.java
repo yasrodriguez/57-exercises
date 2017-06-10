@@ -1,5 +1,6 @@
 import SayingHello.*;
 import TipCalculator.*;
+import CharacterCounter.*;
 
 
 /**
@@ -10,7 +11,8 @@ import TipCalculator.*;
 public class Main {
     public static void main (String args[]) {
         //TipCalculator.execute();
-        SayingHello.execute();
+       // SayingHello.execute();
+        CharacterCounter.execute();
     }
     }
 
