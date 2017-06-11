@@ -1,6 +1,8 @@
+import QuotePrinter.QuotePrinter;
 import SayingHello.*;
 import TipCalculator.*;
 import CharacterCounter.*;
+import QuotePrinter.*;
 
 
 /**
@@ -9,10 +11,11 @@ import CharacterCounter.*;
 
 
 public class Main {
-    public static void main (String args[]) {
-        //TipCalculator.execute();
-       // SayingHello.execute();
-        CharacterCounter.execute();
+    public static void main(String args[]) {
+        // TipCalculator.execute();
+        // SayingHello.execute();
+        // CharacterCounter.execute();
+        QuotePrinter.execute();
     }
-    }
+}
 
