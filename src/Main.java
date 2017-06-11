@@ -3,6 +3,7 @@ import SayingHello.*;
 import TipCalculator.*;
 import CharacterCounter.*;
 import QuotePrinter.*;
+import MadLib.*;
 
 
 /**
@@ -15,7 +16,8 @@ public class Main {
         // TipCalculator.execute();
         // SayingHello.execute();
         // CharacterCounter.execute();
-        QuotePrinter.execute();
+        //QuotePrinter.execute();
+        MadLib.execute();
     }
 }
 
