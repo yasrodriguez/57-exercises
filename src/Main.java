@@ -5,6 +5,7 @@ import CharacterCounter.*;
 import QuotePrinter.*;
 import MadLib.*;
 import SimpleMath.*;
+import RetirementCalculator.*;
 
 
 /**
@@ -19,7 +20,8 @@ public class Main {
         // CharacterCounter.execute();
         //QuotePrinter.execute();
         //MadLib.execute();
-        SimpleMath.execute();
+        //SimpleMath.execute();
+        RetirementCalculator.execute();
     }
 }
 
