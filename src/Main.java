@@ -4,6 +4,7 @@ import TipCalculator.*;
 import CharacterCounter.*;
 import QuotePrinter.*;
 import MadLib.*;
+import SimpleMath.*;
 
 
 /**
@@ -17,7 +18,8 @@ public class Main {
         // SayingHello.execute();
         // CharacterCounter.execute();
         //QuotePrinter.execute();
-        MadLib.execute();
+        //MadLib.execute();
+        SimpleMath.execute();
     }
 }
 
