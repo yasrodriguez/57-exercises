@@ -6,6 +6,7 @@ import QuotePrinter.*;
 import MadLib.*;
 import SimpleMath.*;
 import RetirementCalculator.*;
+import AreaCalculator.*;
 
 
 /**
@@ -15,13 +16,14 @@ import RetirementCalculator.*;
 
 public class Main {
     public static void main(String args[]) {
-        // TipCalculator.execute();
-        // SayingHello.execute();
-        // CharacterCounter.execute();
-        //QuotePrinter.execute();
-        //MadLib.execute();
-        //SimpleMath.execute();
-        RetirementCalculator.execute();
+//      TipCalculator.execute();
+//      SayingHello.execute();
+//      CharacterCounter.execute();
+//      QuotePrinter.execute();
+//      MadLib.execute();
+//      SimpleMath.execute();
+//      RetirementCalculator.execute();
+        AreaCalculator.execute();
     }
 }
 
