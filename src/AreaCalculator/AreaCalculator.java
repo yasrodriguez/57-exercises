@@ -16,20 +16,43 @@ public class AreaCalculator {
         prompt();
     }
 
+    private AreaCalculator(double length, double width){
+        this.length = length;
+        this.width = width;
+    }
+
     private void prompt() {
         Scanner s = new Scanner(System.in);
 
-        System.out.print("Enter length of the room in feet: ");
-        double len = s.nextDouble();
+        print("Enter length of the room in feet: ");
+        length = s.nextDouble();
 
-        System.out.print("Enter width of the room in feet: ");
-        double width = s.nextDouble();
+        print("Enter width of the room in feet: ");
+        width = s.nextDouble();
+
+        print ("You entered dimensions of " + length + " feet by " + width + " feet.");
     }
 
+    private void convert(){
+        double area = length * width;
+        double areaInMeters = area * FEET_TO_METERS;
+        print("The area is:");
+        System.out.printf ("%.3f square feet \n", area);
+        System.out.printf ("%.3f square meters \n",areaInMeters);
+    }
+
+    private void print(String message){
+        System.out.println(message);
+    }
 
     public static void execute() {
         AreaCalculator calc = new AreaCalculator();
+        calc.convert();
     }
 
+    public static void executeTest(double length, double width) {
+        AreaCalculator calc = new AreaCalculator(length, width);
+        calc.convert();
+    }
 
 }
