@@ -7,6 +7,7 @@ import MadLib.*;
 import SimpleMath.*;
 import RetirementCalculator.*;
 import AreaCalculator.*;
+import PizzaParty.*;
 
 
 /**
@@ -23,7 +24,8 @@ public class Main {
 //      MadLib.execute();
 //      SimpleMath.execute();
 //      RetirementCalculator.execute();
-        AreaCalculator.execute();
+//      AreaCalculator.execute();
+        PizzaParty.execute();
     }
 }
 
