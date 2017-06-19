@@ -9,50 +9,82 @@ import java.util.Scanner;
  */
 public class PizzaParty {
     private Scanner s;
+    private int numOfPeople;
+    private int numOfPizzas;
+    private int numOfSlicesPerPizza;
+    private PizzaDivision p;
 
     private PizzaParty(){
-        s = new Scanner(System.in);
+        numOfPeople = 0;
+        numOfPizzas = 0;
+        numOfSlicesPerPizza = 0;
+        initialize();
     }
 
-    private class PizzaDivision{
+    public PizzaParty(int numOfPeople, int numOfPizzas, int numOfSlicesPerPizza){
+        this.numOfPeople = numOfPeople;
+        this.numOfPizzas = numOfPizzas;
+        this.numOfSlicesPerPizza = numOfSlicesPerPizza;
+        initialize();
+    }
+
+    private void initialize(){
+        s = new Scanner(System.in);
+        p = new PizzaDivision(0,0);
+    }
+    public class PizzaDivision{
        private int slicesPerPerson;
        private int leftOverPieces;
 
-        private PizzaDivision(){
+        private PizzaDivision(int slices, int leftovers){
             slicesPerPerson = 0;
             leftOverPieces = 0;
         }
+
+        public int getSlices(){
+            return slicesPerPerson;
+        }
+
+        public int getLeftOvers(){
+            return leftOverPieces;
+        }
     }
 
-    private void dividePizza() {
-        int numOfPeople = getInput("Enter the number of people: ");
-        int numOfPizzas = getInput ("Enter the number of pizzas: ");
-        int numOfSlicesPerPizza = getInput("Enter the number of slices per pizza: ");
-        PizzaDivision p = calculate(numOfPeople, numOfPizzas, numOfSlicesPerPizza);
-        print ("Each person gets " + p.slicesPerPerson + " slices of pizza.");
-        print ("There are " + p.leftOverPieces + " leftover pieces.");
+    private void getInput(){
+        numOfPeople = prompt("Enter the number of people: ");
+        numOfPizzas = prompt ("Enter the number of pizzas: ");
+        numOfSlicesPerPizza = prompt("Enter the number of slices per pizza: ");
     }
 
-
-    private Integer getInput(String prompt){
+    private Integer prompt(String prompt){
         System.out.println(prompt);
         return s.nextInt();
     }
 
-    private PizzaDivision calculate(int people, int pizzas, int slices){
-        int totalSlices = pizzas * slices;
-        PizzaDivision p = new PizzaDivision();
-        p.slicesPerPerson = totalSlices / people;
-        p.leftOverPieces = totalSlices % people;
-        return (p);
+    private void calculate (){
+        int totalSlices = numOfPizzas * numOfSlicesPerPizza;
+        p.slicesPerPerson = totalSlices / numOfPeople;
+        p.leftOverPieces = totalSlices % numOfPeople;
     }
 
     private void print(String message){
        System.out.println(message);
     }
+    
+    private void results(){
+        print ("Each person gets " + p.slicesPerPerson + " slices of pizza.");
+        print ("There are " + p.leftOverPieces + " leftover pieces.");
+    }
 
     public static void execute(){
         PizzaParty party = new PizzaParty();
-        party.dividePizza();
+        party.getInput();
+        party.calculate();
+        party.results();
+    }
+
+    public PizzaDivision executeTest(){
+        calculate();
+        return p;
     }
 }
