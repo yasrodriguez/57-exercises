@@ -8,6 +8,7 @@ import SimpleMath.*;
 import RetirementCalculator.*;
 import AreaCalculator.*;
 import PizzaParty.*;
+import PaintCalculator.*;
 
 
 /**
@@ -25,7 +26,9 @@ public class Main {
 //      SimpleMath.execute();
 //      RetirementCalculator.execute();
 //      AreaCalculator.execute();
-        PizzaParty.execute();
+//      PizzaParty.execute();
+        PaintCalculator.execute();
     }
+
 }
 
