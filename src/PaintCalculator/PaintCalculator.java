@@ -15,6 +15,27 @@ public class PaintCalculator
     private double area;
     private static final int GALLON_COVERAGE_IN_FEET = 350;
 
+
+    private PaintCalculator()
+    {
+        length = 0;
+        width = 0;
+        initialize();
+    }
+    public PaintCalculator(double length, double width)
+    {
+        this.length = length;
+        this.width = width;
+        initialize();
+    }
+
+    private void initialize()
+    {
+        gallons = 0;
+        gallonsRounded = 0;
+        area = 0;
+    }
+
     private void askRoomSize()
     {
         Scanner s = new Scanner (System.in);
@@ -22,6 +43,7 @@ public class PaintCalculator
         length = s.nextDouble();
         print("What is the width of your room (in square feet): ");
         width = s.nextDouble();
+        initialize();
     }
 
     private void calculateGallons()
@@ -36,7 +58,7 @@ public class PaintCalculator
                 area + " square feet" );
     }
 
-    public double getGallons()
+    public int getGallons()
     {
         return gallonsRounded;
     }
@@ -52,5 +74,10 @@ public class PaintCalculator
         calc.askRoomSize();
         calc.calculateGallons();
         calc.printGallons();
+    }
+
+    public void executeTest()
+    {
+        calculateGallons();
     }
 }
