@@ -9,6 +9,7 @@ import RetirementCalculator.*;
 import AreaCalculator.*;
 import PizzaParty.*;
 import PaintCalculator.*;
+import SelfCheckout.*;
 
 
 /**
@@ -27,7 +28,8 @@ public class Main {
 //      RetirementCalculator.execute();
 //      AreaCalculator.execute();
 //      PizzaParty.execute();
-        PaintCalculator.execute();
+//      PaintCalculator.execute();
+        SelfCheckout.execute();
     }
 
 }
