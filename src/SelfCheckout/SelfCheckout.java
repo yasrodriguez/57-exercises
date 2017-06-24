@@ -28,7 +28,7 @@ public class SelfCheckout
       Scanner s = new Scanner(System.in);
       double price;
       double qty;
-      double extendedPrice;
+
 
       for (int i = 1; i <= 3; i++)
       {
@@ -38,19 +38,24 @@ public class SelfCheckout
           print("Enter the quantity of item " + i + " :");
           qty = s.nextDouble();
 
-
-          extendedPrice = price * qty;
-          subtotal += extendedPrice;
-
-          itemCount += qty;
-
+          calculateSubtotalAndItemCount(price,qty);
       }
 
   }
 
-  private void calculateTaxAndTotal()
+  private void calculateSubtotalAndItemCount(double price, double qty)
   {
-    total = subtotal + taxAmount;
+      double extendedPrice;
+      extendedPrice = price * qty;
+      subtotal += extendedPrice;
+      itemCount += qty;
+  }
+
+  private void calculateTaxAndTotal()
+
+  {
+      taxAmount = subtotal * (TAX_RATE / 100);
+      total = subtotal + taxAmount;
   }
 
   private void printResults()
