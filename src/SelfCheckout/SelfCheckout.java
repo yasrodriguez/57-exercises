@@ -15,7 +15,7 @@ public class SelfCheckout
     private double itemCount;
     private final static double TAX_RATE = 5.5;
 
-    private SelfCheckout()
+    public SelfCheckout()
     {
         subtotal = 0;
         taxAmount = 0;
@@ -43,7 +43,7 @@ public class SelfCheckout
 
   }
 
-  private void calculateSubtotalAndItemCount(double price, double qty)
+  void calculateSubtotalAndItemCount(double price, double qty)
   {
       double extendedPrice;
       extendedPrice = price * qty;
@@ -51,7 +51,7 @@ public class SelfCheckout
       itemCount += qty;
   }
 
-  private void calculateTaxAndTotal()
+  void calculateTaxAndTotal()
 
   {
       taxAmount = subtotal * (TAX_RATE / 100);
@@ -61,9 +61,9 @@ public class SelfCheckout
   private void printResults()
   {
       print("Number of items: " + itemCount);
-      printCurrency("Subtotal: %.2f \n" , subtotal);
-      printCurrency("Tax: %.2f \n" , taxAmount);
-      printCurrency("Total: %.2f \n" , total);
+      printCurrency("Subtotal: $%.2f \n" , subtotal);
+      printCurrency("Tax: $%.2f \n" , taxAmount);
+      printCurrency("Total: $%.2f \n" , total);
   }
 
   private void print(String message)
@@ -74,6 +74,26 @@ public class SelfCheckout
   private void printCurrency(String message, double amount)
   {
       System.out.printf(message, amount);
+  }
+
+  public String getItemCount()
+  {
+      return Double.toString(itemCount);
+  }
+
+  public String getSubtotal()
+  {
+      return String.format("$%.2f" , subtotal);
+  }
+
+  public String getTaxAmount()
+  {
+      return String.format("$%.2f" , taxAmount);
+  }
+
+  public String getTotal()
+  {
+      return String.format("$%.2f" , total);
   }
 
   public static void execute()
