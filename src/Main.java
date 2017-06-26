@@ -10,6 +10,7 @@ import AreaCalculator.*;
 import PizzaParty.*;
 import PaintCalculator.*;
 import SelfCheckout.*;
+import CurrencyConverter.*;
 
 
 /**
@@ -29,7 +30,8 @@ public class Main {
 //      AreaCalculator.execute();
 //      PizzaParty.execute();
 //      PaintCalculator.execute();
-        SelfCheckout.execute();
+//      SelfCheckout.execute();
+        CurrencyConverter.execute();
     }
 
 }
