@@ -61,6 +61,11 @@ public class CurrencyConverter
         System.out.println(message);
     }
 
+    public BigDecimal getConvertedAmount()
+    {
+        return convertedAmount;
+    }
+
     public static void execute()
     {
         CurrencyConverter cc = new CurrencyConverter();
