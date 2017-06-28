@@ -11,7 +11,7 @@ import PizzaParty.*;
 import PaintCalculator.*;
 import SelfCheckout.*;
 import CurrencyConverter.*;
-
+import SimpleInterestCalculator.*;
 
 /**
  * Used to call all 57 exercises
@@ -31,7 +31,8 @@ public class Main {
 //      PizzaParty.execute();
 //      PaintCalculator.execute();
 //      SelfCheckout.execute();
-        CurrencyConverter.execute();
+//      CurrencyConverter.execute();
+        SimpleInterestCalculator.execute();
     }
 
 }
