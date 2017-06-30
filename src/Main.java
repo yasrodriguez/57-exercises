@@ -12,6 +12,8 @@ import PaintCalculator.*;
 import SelfCheckout.*;
 import CurrencyConverter.*;
 import SimpleInterestCalculator.*;
+import CompoundInterestCalculator.*;
+
 
 /**
  * Used to call all 57 exercises
@@ -32,7 +34,8 @@ public class Main {
 //      PaintCalculator.execute();
 //      SelfCheckout.execute();
 //      CurrencyConverter.execute();
-        SimpleInterestCalculator.execute();
+//        SimpleInterestCalculator.execute();
+        CompoundInterestCalculator.execute();
     }
 
 }
