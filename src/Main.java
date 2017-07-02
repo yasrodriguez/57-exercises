@@ -12,6 +12,7 @@ import ex10selfCheckout.SelfCheckout;
 import ex11currencyConverter.CurrencyConverter;
 import ex12simpleInterestCalculator.SimpleInterestCalculator;
 import ex13compoundInterestCalculator.CompoundInterestCalculator;
+import ex14taxCalculator.TaxCalculator;
 
 /**
  * Used to call all 57 exercises
@@ -20,20 +21,21 @@ import ex13compoundInterestCalculator.CompoundInterestCalculator;
 
 public class Main {
     public static void main(String args[]) {
-        TipCalculator.execute();
-        SayingHello.execute();
-        CharacterCounter.execute();
-        QuotePrinter.execute();
-        MadLib.execute();
-        SimpleMath.execute();
-        RetirementCalculator.execute();
-        AreaCalculator.execute();
-        PizzaParty.execute();
-        PaintCalculator.execute();
-        SelfCheckout.execute();
-        CurrencyConverter.execute();
-        SimpleInterestCalculator.execute();
-        CompoundInterestCalculator.execute();
+//        TipCalculator.execute();
+//        SayingHello.execute();
+//        CharacterCounter.execute();
+//        QuotePrinter.execute();
+//        MadLib.execute();
+//        SimpleMath.execute();
+//        RetirementCalculator.execute();
+//        AreaCalculator.execute();
+//        PizzaParty.execute();
+//        PaintCalculator.execute();
+//        SelfCheckout.execute();
+//        CurrencyConverter.execute();
+//        SimpleInterestCalculator.execute();
+//        CompoundInterestCalculator.execute();
+        TaxCalculator.execute();
 
     }
 
