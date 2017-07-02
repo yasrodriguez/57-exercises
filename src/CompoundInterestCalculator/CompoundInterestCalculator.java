@@ -52,7 +52,7 @@ public class CompoundInterestCalculator
         numberOfCompoundingsPerYear = s.nextInt();
     }
 
-    private void calculate()
+    void calculate()
     {
         totalAmount = BigDecimal.valueOf(amount *
                 Math.pow((1 + rate / numberOfCompoundingsPerYear),numberOfCompoundingsPerYear*years)).setScale(2,BigDecimal.ROUND_CEILING);
@@ -60,8 +60,14 @@ public class CompoundInterestCalculator
 
     private void printResults()
     {
-        print(totalAmount.toString());
+        System.out.printf("$%,.2f invested at %.2f%% for %d years compounded %d times per year is $%,.2f", amount,
+                rate * 100, years, numberOfCompoundingsPerYear, totalAmount);
 
+    }
+
+    public BigDecimal getTotalAmount()
+    {
+        return totalAmount;
     }
 
     private void print(String message)
