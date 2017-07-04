@@ -27,5 +27,13 @@ public class TaxCalculatorTest
         test.printResults();
         assertEquals("The subtotal is $10.00." + System.lineSeparator() + "The tax is $0.55." + System.lineSeparator() + "The total is $10.55."+ System.lineSeparator(), os.toString());
     }
-
+    @Test
+    public void state_is_Michigan()
+    {
+        System.setOut(ps);
+        TaxCalculator test = new TaxCalculator(15.99, "MI", true);
+        test.calculate();
+        test.printResults();
+        assertEquals("The total is $15.99."+ System.lineSeparator(), os.toString());
+    }
 }
