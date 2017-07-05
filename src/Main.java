@@ -1,5 +1,6 @@
 import ex0tipCalculator.TipCalculator;
 import ex15passwordValidator.PasswordValidator;
+import ex16DrivingAgeChecker.DrivingAgeChecker;
 import ex1sayingHello.SayingHello;
 import ex2characterCounter.CharacterCounter;
 import ex3quotePrinter.QuotePrinter;
@@ -38,7 +39,8 @@ public class Main {
 //        SimpleInterestCalculator.execute();
 //        CompoundInterestCalculator.execute();
 //        TaxCalculator.execute();
-        PasswordValidator.execute();
+//        PasswordValidator.execute();
+        DrivingAgeChecker.execute();
     }
 
 }
