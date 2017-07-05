@@ -1,4 +1,5 @@
 import ex0tipCalculator.TipCalculator;
+import ex15passwordValidator.PasswordValidator;
 import ex1sayingHello.SayingHello;
 import ex2characterCounter.CharacterCounter;
 import ex3quotePrinter.QuotePrinter;
@@ -13,6 +14,7 @@ import ex11currencyConverter.CurrencyConverter;
 import ex12simpleInterestCalculator.SimpleInterestCalculator;
 import ex13compoundInterestCalculator.CompoundInterestCalculator;
 import ex14taxCalculator.TaxCalculator;
+import sun.security.util.Password;
 
 /**
  * Used to call all 57 exercises
@@ -35,8 +37,8 @@ public class Main {
 //        CurrencyConverter.execute();
 //        SimpleInterestCalculator.execute();
 //        CompoundInterestCalculator.execute();
-        TaxCalculator.execute();
-
+//        TaxCalculator.execute();
+        PasswordValidator.execute();
     }
 
 }
