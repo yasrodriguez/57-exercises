@@ -5,9 +5,8 @@ import java.util.Scanner;
  * Calculate the Blood Alcohol Content (BAC).  Prompt for weight, gender, number of drinks, amount of alcohol by volume
  * of drinks consumed, and amount of time since the last drink.  Calculate BAC  and tell the user if they are
  * allowed to drive or not.
- * Additional References:
+ * Additional Reference:
  * http://www.teamdui.com/bac-widmarks-formula/
- * http://www.wsp.wa.gov/breathtest/docs/webdms/Studies_Articles/Widmarks%20Equation%2009-16-1996.pdf
  * Created by Yasmin on 7/6/2017.
  */
 public class BloodAlcoholCalculator
@@ -24,12 +23,27 @@ public class BloodAlcoholCalculator
 
     private BloodAlcoholCalculator()
     {
-        s = new Scanner(System.in);
         weight = 0;
         gender = "";
         ouncesOfAlcoholicBeveragesConsumed = 0;
         alcoholPercentageByVolume = 0;
         hoursSinceDrinkingStarted = 0;
+        initialize();
+    }
+
+    public BloodAlcoholCalculator(double weight, String gender, double totalOunces, double ABV, double hours)
+    {
+        this.weight = weight;
+        this.gender = gender;
+        this.ouncesOfAlcoholicBeveragesConsumed = totalOunces;
+        this.alcoholPercentageByVolume = ABV/100;
+        this.hoursSinceDrinkingStarted = hours;
+        initialize();
+    }
+
+    private void initialize()
+    {
+        s = new Scanner(System.in);
         bac = 0;
     }
     private void prompt()
@@ -44,9 +58,9 @@ public class BloodAlcoholCalculator
         ouncesOfAlcoholicBeveragesConsumed = isNumber();
 
         print("Enter alcohol % by volume: ");
-        alcoholPercentageByVolume = isNumber() /100;
+        alcoholPercentageByVolume = isNumber()/100;
 
-        print("Enter number of hours since last drink: ");
+        print("Enter number of hours since first drink: ");
         hoursSinceDrinkingStarted = isNumber();
     }
 
@@ -60,15 +74,28 @@ public class BloodAlcoholCalculator
         return s.nextDouble();
     }
 
-    private void calculate()
+    void calculate()
     {
         double ouncesOfAlcoholConsumed = ouncesOfAlcoholicBeveragesConsumed * alcoholPercentageByVolume;
-        bac = (ouncesOfAlcoholConsumed * 5.14 / weight * getDistributionRatio()) - .015/100 * hoursSinceDrinkingStarted;
+        bac = (ouncesOfAlcoholConsumed * 5.14) / (weight * getDistributionRatio()) - .015 * hoursSinceDrinkingStarted;
+        if (bac < 0)
+        {
+            bac = 0;
+        }
     }
 
-    private void printResults()
+    void printResults()
     {
-        print("Your BAC is " + bac);
+        String message;
+        if (bac < .08)
+        {
+            message = "You're good to drive.";
+        }
+        else
+        {
+            message = "It's not legal for you to drive.";
+        }
+        System.out.printf ("Your BAC is %.3f%n" + message, bac);
     }
 
     private double getDistributionRatio()
