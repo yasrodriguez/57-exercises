@@ -2,6 +2,7 @@ import ex0tipCalculator.TipCalculator;
 import ex15passwordValidator.PasswordValidator;
 import ex16DrivingAgeChecker.DrivingAgeChecker;
 import ex17BloodAlcoholCalculator.BloodAlcoholCalculator;
+import ex18temperatureConverter.TemperatureConverter;
 import ex1sayingHello.SayingHello;
 import ex2characterCounter.CharacterCounter;
 import ex3quotePrinter.QuotePrinter;
@@ -42,7 +43,8 @@ public class Main {
 //        TaxCalculator.execute();
 //        PasswordValidator.execute();
 //        DrivingAgeChecker.execute();
-        BloodAlcoholCalculator.execute();
+//        BloodAlcoholCalculator.execute();
+        TemperatureConverter.execute();
     }
 
 }
