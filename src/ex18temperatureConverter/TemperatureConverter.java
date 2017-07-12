@@ -53,11 +53,11 @@ public class TemperatureConverter
     {
         if(conversionType.equalsIgnoreCase("C"))
         {
-            convertedTemperature = (temperature - 32) * 5 / 9;
+            convertedTemperature = Math.round((temperature - 32) * 5 / 9);
         }
         else if (conversionType.equalsIgnoreCase("F"))
         {
-            convertedTemperature = (temperature * 9/5) + 32;
+            convertedTemperature = Math.round((temperature * 9/5) + 32);
         }
         return convertedTemperature;
     }
