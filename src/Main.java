@@ -17,7 +17,7 @@ import ex11currencyConverter.CurrencyConverter;
 import ex12simpleInterestCalculator.SimpleInterestCalculator;
 import ex13compoundInterestCalculator.CompoundInterestCalculator;
 import ex14taxCalculator.TaxCalculator;
-import sun.security.util.Password;
+import ex19bmiCalculator.BMICalculator;
 
 /**
  * Used to call all 57 exercises
@@ -44,7 +44,8 @@ public class Main {
 //        PasswordValidator.execute();
 //        DrivingAgeChecker.execute();
 //        BloodAlcoholCalculator.execute();
-        TemperatureConverter.execute();
+//        TemperatureConverter.execute();
+        BMICalculator.execute();
     }
 
 }
