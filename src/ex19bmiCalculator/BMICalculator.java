@@ -1,4 +1,6 @@
 package ex19bmiCalculator;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.Scanner;
 
 /**
@@ -7,21 +9,24 @@ import java.util.Scanner;
  */
 public class BMICalculator
 {
+    private Scanner s;
     private double weight;
     private double height;
-    private Scanner s;
+
 
     public BMICalculator()
     {
+        s = new Scanner (System.in);
         weight = 0;
         height = 0;
-        s = new Scanner (System.in);
     }
 
     public BMICalculator(String weight, String height)
     {
-       // this.weight = weight;
-        //this.height = height;
+        InputStream is = new ByteArrayInputStream(weight.getBytes());
+        s = new Scanner (is);
+        this.weight = ifNumber();
+        //this.height = ifNumber();
     }
 
     private void prompt()
@@ -34,12 +39,13 @@ public class BMICalculator
 
     private double ifNumber()
     {
-        if (s.hasNextDouble())
-        {
-            return Double.parseDouble(s.next());
+       if (s.hasNextDouble())
+            {
+                return Double.parseDouble(s.next());
+            }
+            throw new NumberFormatException("There is something wrong with your input. You must enter a number.");
         }
-        throw new NumberFormatException();
-    }
+
 
     private static void print (String message)
     {
