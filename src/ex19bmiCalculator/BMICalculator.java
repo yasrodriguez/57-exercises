@@ -12,6 +12,7 @@ public class BMICalculator
     private Scanner s;
     private double weight;
     private double height;
+    private double bmi;
 
 
     public BMICalculator()
@@ -19,6 +20,7 @@ public class BMICalculator
         s = new Scanner (System.in);
         weight = 0;
         height = 0;
+        bmi = 0;
     }
 
     public BMICalculator(String weight, String height)
@@ -26,7 +28,10 @@ public class BMICalculator
         InputStream is = new ByteArrayInputStream(weight.getBytes());
         s = new Scanner (is);
         this.weight = ifNumber();
-        //this.height = ifNumber();
+        is = new ByteArrayInputStream(height.getBytes());
+        s = new Scanner(is);
+        this.height = ifNumber();
+        bmi = 0;
     }
 
     private void prompt()
@@ -46,6 +51,28 @@ public class BMICalculator
             throw new NumberFormatException("There is something wrong with your input. You must enter a number.");
         }
 
+        void calculateBmi()
+        {
+            //round to one decimal place
+            bmi = (double) Math.round((weight / (height * height ))* 703 * 10) / 10;
+
+        }
+
+        String evaluateBmi()
+        {
+            if (bmi < 18.5)
+            {
+                return String.format("Your BMI is %.1f.%nYou are underweight.", bmi);
+            }
+            else if (bmi >= 18.5 && bmi <=25)
+            {
+                return String.format("Your BMI is %.1f.%nYou are within the ideal weight range.", bmi);
+            }
+            else
+            {
+                return String.format("Your BMI is %.1f.%nYou are overweight.", bmi);
+            }
+        }
 
     private static void print (String message)
     {
@@ -56,6 +83,8 @@ public class BMICalculator
     {
         BMICalculator bmiCalc = new BMICalculator();
         bmiCalc.prompt();
+        bmiCalc.calculateBmi();
+        print(bmiCalc.evaluateBmi());
     }
 
 }
