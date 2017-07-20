@@ -4,6 +4,7 @@ import ex16DrivingAgeChecker.DrivingAgeChecker;
 import ex17BloodAlcoholCalculator.BloodAlcoholCalculator;
 import ex18temperatureConverter.TemperatureConverter;
 import ex1sayingHello.SayingHello;
+import ex20multiStateSalesTaxCalculator.SalesTaxCalculator;
 import ex2characterCounter.CharacterCounter;
 import ex3quotePrinter.QuotePrinter;
 import ex4madLib.MadLib;
@@ -45,7 +46,8 @@ public class Main {
 //        DrivingAgeChecker.execute();
 //        BloodAlcoholCalculator.execute();
 //        TemperatureConverter.execute();
-        BMICalculator.execute();
+//        BMICalculator.execute();
+        SalesTaxCalculator.execute();
     }
 
 }
