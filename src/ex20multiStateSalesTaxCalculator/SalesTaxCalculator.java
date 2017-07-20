@@ -85,7 +85,7 @@ public class SalesTaxCalculator
         return orderAmount.add(totalTax);
     }
 
-    private void printResults()
+    private String printResults()
     {
         String result = String.format("The total is %.2f.%n", calculateTotal());
 
@@ -95,6 +95,7 @@ public class SalesTaxCalculator
         }
 
         print (result);
+        return result;
     }
 
     private void print(String message)
@@ -109,6 +110,13 @@ public class SalesTaxCalculator
         stc.calculateTax();
         stc.calculateTotal();
         stc.printResults();
+    }
+
+    public String test()
+    {
+        calculateTax();
+        calculateTotal();
+        return printResults();
     }
 
 
