@@ -1,14 +1,13 @@
 package ex20multiStateSalesTaxCalculator;
 
 import java.math.BigDecimal;
-import java.util.Scanner;
 
 /**
- * Prompt for the order amount and state where order will be shipped. Calculate tax as follows:
+ * Get the order amount and state where order will be shipped. Calculate tax as follows:
  * Wisconsin - 5.5%. For Eau Claire and Dunn counties, add .5% and .4%, respectively.
  * Illinois - 8%
  * All other states - No tax.
- * Display total. Display tax amount only for Illinois and Wisconsin.
+ * Return tax and total.
  * Created by Yasmin on 7/19/2017.
  */
 public class SalesTaxCalculator
@@ -22,14 +21,6 @@ public class SalesTaxCalculator
     private static final BigDecimal WI_TAX = new BigDecimal(.055);
     private static final BigDecimal IL_TAX = new BigDecimal(.08);
 
-    public SalesTaxCalculator()
-    {
-        orderAmount = new BigDecimal(0);
-        totalTax = new BigDecimal(0);
-        state = "";
-        county = "";
-    }
-
     public SalesTaxCalculator (BigDecimal orderAmount,String state, String county)
     {
         this.orderAmount = orderAmount;
@@ -38,28 +29,7 @@ public class SalesTaxCalculator
         totalTax = new BigDecimal(0);
     }
 
-    private void prompt()
-    {
-        Scanner s = new Scanner(System.in);
-
-        print("Enter order amount: ");
-        if (s.hasNextBigDecimal())
-        {
-            orderAmount = s.nextBigDecimal();
-        }
-
-        print("Enter shipping state: ");
-        state = s.next();
-
-        if (state.equals("WI"))
-        {
-            print("Please enter county: ");
-            s = new Scanner(System.in); //to avoid empty string in nextLine
-            county = s.nextLine();
-        }
-    }
-
-    private void calculateTax()
+    public BigDecimal calculateTax()
     {
         if (state.equals("WI"))
         {
@@ -77,47 +47,12 @@ public class SalesTaxCalculator
             {
                 totalTax = orderAmount.multiply(IL_TAX);
             }
+        return totalTax.setScale(2, BigDecimal.ROUND_HALF_EVEN);
         }
 
 
-    private BigDecimal calculateTotal()
+    public BigDecimal calculateTotal()
     {
-        return orderAmount.add(totalTax);
+        return orderAmount.add(totalTax).setScale(2, BigDecimal.ROUND_HALF_EVEN);
     }
-
-    private String printResults()
-    {
-        String result = String.format("The total is %.2f.%n", calculateTotal());
-
-        if (state.equals("WI") || state.equals("IL"))
-        {
-            result = String.format("The tax is %.2f.%n", totalTax) + result;
-        }
-
-        print (result);
-        return result;
-    }
-
-    private void print(String message)
-    {
-        System.out.print(message);
-    }
-
-    public static void execute()
-    {
-        SalesTaxCalculator stc = new SalesTaxCalculator();
-        stc.prompt();
-        stc.calculateTax();
-        stc.calculateTotal();
-        stc.printResults();
-    }
-
-    public String test()
-    {
-        calculateTax();
-        calculateTotal();
-        return printResults();
-    }
-
-
 }
