@@ -69,4 +69,12 @@ public class BMICalculatorTest
         bmic.calculateBmi();
         assertEquals("Your BMI is 39.5."+ System.lineSeparator()+ "You are overweight.", bmic.evaluateBmi());
     }
+
+    @Test
+    public void height_is_0() throws Exception
+    {
+        bmic = new BMICalculator("120", "0");
+        bmic.calculateBmi();
+        assertEquals("Height can't be 0", bmic.evaluateBmi());
+    }
 }
