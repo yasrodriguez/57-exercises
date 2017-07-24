@@ -2,7 +2,6 @@ import ex0tipCalculator.TipCalculator;
 import ex15passwordValidator.PasswordValidator;
 import ex16DrivingAgeChecker.DrivingAgeChecker;
 import ex17BloodAlcoholCalculator.BloodAlcoholCalculator;
-import ex18temperatureConverter.TemperatureConverter;
 import ex1sayingHello.SayingHello;
 import ex20multiStateSalesTaxCalculator.SalesTaxCalculator;
 import ex2characterCounter.CharacterCounter;
@@ -18,7 +17,6 @@ import ex11currencyConverter.CurrencyConverter;
 import ex12simpleInterestCalculator.SimpleInterestCalculator;
 import ex13compoundInterestCalculator.CompoundInterestCalculator;
 import ex14taxCalculator.TaxCalculator;
-import ex19bmiCalculator.BMICalculator;
 
 /**
  * Used to call all 57 exercises
@@ -45,8 +43,7 @@ public class Main {
 //        PasswordValidator.execute();
 //        DrivingAgeChecker.execute();
 //        BloodAlcoholCalculator.execute();
-//        TemperatureConverter.execute();
+//
     }
-
 }
 
