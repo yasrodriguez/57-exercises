@@ -46,8 +46,6 @@ public class Main {
 //        DrivingAgeChecker.execute();
 //        BloodAlcoholCalculator.execute();
 //        TemperatureConverter.execute();
-//        BMICalculator.execute();
-        SalesTaxCalculator.execute();
     }
 
 }

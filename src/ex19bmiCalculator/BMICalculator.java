@@ -1,6 +1,7 @@
 package ex19bmiCalculator;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -9,82 +10,48 @@ import java.util.Scanner;
  */
 public class BMICalculator
 {
-    private Scanner s;
     private double weight;
     private double height;
     private double bmi;
+    private final static double BMI_UNDERWEIGHT = 18.5;
+    private final static double BMI_OVERWEIGHT = 25;
 
 
-    public BMICalculator()
+    public BMICalculator(double weight, double height)
     {
-        s = new Scanner (System.in);
-        weight = 0;
-        height = 0;
+        checkNot0(weight);
+        checkNot0(height);
+        this.weight = weight;
+        this. height = height;
         bmi = 0;
     }
 
-    public BMICalculator(String weight, String height)
+    private void checkNot0(double input)
     {
-        InputStream is = new ByteArrayInputStream(weight.getBytes());
-        s = new Scanner (is);
-        this.weight = ifNumber();
-        is = new ByteArrayInputStream(height.getBytes());
-        s = new Scanner(is);
-        this.height = ifNumber();
-        bmi = 0;
-    }
-
-    private void prompt()
-    {
-        print("Enter your weight: ");
-        this.weight = ifNumber();
-        print("Enter your height (in inches): ");
-        this.height = ifNumber();
-    }
-
-    private double ifNumber()
-    {
-       if (s.hasNextDouble())
+            if(input==0)
             {
-                return Double.parseDouble(s.next());
+                throw new NumberFormatException("Input can't be 0.");
             }
-            throw new NumberFormatException("There is something wrong with your input. You must enter a number.");
-        }
+    }
 
-        void calculateBmi()
+    void calculateBmi()
+    {
+        bmi = (double) Math.round((weight / (height * height)) * 703 * 10) / 10;
+    }
+
+    String evaluateBmi()
+    {
+        if (bmi < BMI_UNDERWEIGHT)
         {
-            //round to one decimal place
-            bmi = (double) Math.round((weight / (height * height ))* 703 * 10) / 10;
-
+            return String.format("Your BMI is %.1f.%nYou are underweight.", bmi);
         }
-
-        String evaluateBmi()
+        else if (bmi >= BMI_UNDERWEIGHT && bmi <=BMI_OVERWEIGHT)
         {
-            if (bmi < 18.5)
-            {
-                return String.format("Your BMI is %.1f.%nYou are underweight.", bmi);
-            }
-            else if (bmi >= 18.5 && bmi <=25)
-            {
-                return String.format("Your BMI is %.1f.%nYou are within the ideal weight range.", bmi);
-            }
-            else
-            {
-                return String.format("Your BMI is %.1f.%nYou are overweight.", bmi);
-            }
+            return String.format("Your BMI is %.1f.%nYou are within the ideal weight range.", bmi);
         }
-
-    private static void print (String message)
-    {
-        System.out.println(message);
+        else
+        {
+            return String.format("Your BMI is %.1f.%nYou are overweight.", bmi);
+        }
     }
-
-    public static void execute()
-    {
-        BMICalculator bmiCalc = new BMICalculator();
-        bmiCalc.prompt();
-        bmiCalc.calculateBmi();
-        print(bmiCalc.evaluateBmi());
-    }
-
 }
