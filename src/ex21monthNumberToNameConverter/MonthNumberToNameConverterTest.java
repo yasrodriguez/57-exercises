@@ -26,6 +26,20 @@ public class MonthNumberToNameConverterTest
     }
 
     @Test
+    public void Month_is_September() throws Exception
+    {
+
+        assertEquals("SEPTEMBER", MonthNumberToNameConverter.getMonthName(9));
+    }
+
+    @Test
+    public void Month_is_December() throws Exception
+    {
+
+        assertEquals("DECEMBER", MonthNumberToNameConverter.getMonthName(12));
+    }
+
+    @Test
     public void Month_is_invalid() throws Exception
     {
 
