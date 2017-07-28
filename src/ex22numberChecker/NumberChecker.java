@@ -21,16 +21,17 @@ public class NumberChecker
         numbers.add(number3);
     }
 
-    public void hasUniqueNumbers()
+    public int getLargestNumber()
     {
-        boolean unique = true;
         Collections.sort(numbers);
 
-        for (int i = 0; i < numbers.size(); i++)
+        for (int i = 0; i < numbers.size() - 1; i++)
         {
-
+            if (numbers.get(i).equals(numbers.get(i+1)))
+            {
+                throw new NumberFormatException("Numbers must be unique.");
+            }
         }
+        return numbers.get(numbers.size()-1);
     }
-
-
 }
