@@ -63,6 +63,5 @@ public class CarTroubleshooter
            }
        }
     return "Sorry, we have no suggestions for your problem.";
-
    }
 }
