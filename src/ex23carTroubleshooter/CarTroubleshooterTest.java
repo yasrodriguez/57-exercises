@@ -13,49 +13,57 @@ public class CarTroubleshooterTest
     @Test
     public void battery_is_corroded()
     {
-        CarTroubleshooter ct = new CarTroubleshooter(true,true,false,false,false,false);
-        assertEquals("Clean terminals and try starting again.", ct.troubleshoot());
+        CarProblems cp = new CarProblems();
+        cp.silent = true;
+        cp.corrodedBattery = true;
+        assertEquals("Clean terminals and try starting again.", CarTroubleshooter.troubleshoot(cp));
     }
 
     @Test
     public void battery_is_not_corroded()
     {
-        CarTroubleshooter ct = new CarTroubleshooter(true,false,false,false,false,false);
-        assertEquals("Replace cables and try again.", ct.troubleshoot());
+        CarProblems cp = new CarProblems();
+        cp.silent = true;
+        assertEquals("Replace cables and try again.", CarTroubleshooter.troubleshoot(cp));
     }
 
     @Test
     public void car_is_making_clicking_sound()
     {
-        CarTroubleshooter ct = new CarTroubleshooter(false,false,true,false,false,false);
-        assertEquals("Replace the battery.", ct.troubleshoot());
+        CarProblems cp = new CarProblems();
+        cp.clickingNoise = true;
+         assertEquals("Replace the battery.", CarTroubleshooter.troubleshoot(cp));
     }
 
     @Test
     public void car_is_failing_to_start()
     {
-        CarTroubleshooter ct = new CarTroubleshooter(false,false,false,true,false,false);
-        assertEquals("Check spark plug connections.", ct.troubleshoot());
+        CarProblems cp = new CarProblems();
+        cp.failToStart = true;
+        assertEquals("Check spark plug connections.", CarTroubleshooter.troubleshoot(cp));
     }
 
     @Test
     public void car_does_not_have_fuel_injection()
     {
-        CarTroubleshooter ct = new CarTroubleshooter(false,false,false,false,true,false);
-        assertEquals("Check to ensure the choke is opening and closing.", ct.troubleshoot());
+        CarProblems cp = new CarProblems();
+        cp.deadEngine = true;
+        assertEquals("Check to ensure the choke is opening and closing.", CarTroubleshooter.troubleshoot(cp));
     }
 
     @Test
     public void car_has_fuel_injection()
     {
-        CarTroubleshooter ct = new CarTroubleshooter(false,false,false,false,true,true);
-        assertEquals("Get it in for service.", ct.troubleshoot());
+        CarProblems cp = new CarProblems();
+        cp.deadEngine = true;
+        cp.fuelInjection = true;
+        assertEquals("Get it in for service.", CarTroubleshooter.troubleshoot(cp));
     }
 
     @Test
     public void car_has_a_problem_that_is_not_in_our_list()
     {
-        CarTroubleshooter ct = new CarTroubleshooter(false,false,false,false,false,false);
-        assertEquals("Sorry, we have no suggestions for your problem.", ct.troubleshoot());
+        CarProblems cp = new CarProblems();
+        assertEquals("Sorry, we have no suggestions for your problem.", CarTroubleshooter.troubleshoot(cp));
     }
 }
