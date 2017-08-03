@@ -28,12 +28,10 @@ public class PasswordValidator{
     }
 
     enum PasswordStrength{
-
         VeryWeak, Weak, Medium, Strong, VeryStrong
     }
 
     public PasswordStrength validatePassword(){
-
         if(password == null || password.isEmpty()){
             throw new IllegalArgumentException("You can't have a blank password.");
         }
@@ -41,20 +39,25 @@ public class PasswordValidator{
         int length = getLength();
         countCharactersByType();
 
-        if (length >= 8 && letters > 0 && digits > 0 && specialCharacters > 0){
-            return PasswordStrength.VeryStrong;
-        }
-        else if (length >= 8 && letters > 0 && digits > 0){
-            return PasswordStrength.Strong;
-        }
-        else if (length < 8 && letters > 0 && digits == 0 && specialCharacters == 0 ){
-            return PasswordStrength.Weak;
-        }
-        else if (length < 8 && digits > 0 && letters == 0 && specialCharacters == 0){
-            return PasswordStrength.VeryWeak;
+        if (length >= 8) {
+            if (hasAllTypes()){
+                return PasswordStrength.VeryStrong;
+            } else if (hasLettersAndDigits()){
+                return PasswordStrength.Strong;
+            } else{
+                return PasswordStrength.Medium;
+            }
         }
         else{
-            return PasswordStrength.Medium;
+            if (hasLetters()){
+                return PasswordStrength.Weak;
+            }
+            else if (hasDigits()){
+            return PasswordStrength.VeryWeak;
+            }
+            else{
+                return PasswordStrength.Medium;
+            }
         }
     }
 
@@ -80,4 +83,22 @@ public class PasswordValidator{
     private int getLength(){
         return password.length();
     }
+
+    private boolean hasAllTypes(){
+        return letters > 0 && digits > 0 && specialCharacters > 0;
+    }
+
+    private boolean hasLettersAndDigits(){
+        return letters > 0 && digits > 0;
+    }
+
+    private boolean hasLetters(){
+        return letters > 0 && digits == 0 && specialCharacters == 0;
+    }
+
+    private boolean hasDigits(){
+        return digits > 0 && letters == 0 && specialCharacters == 0;
+    }
+
 }
+
