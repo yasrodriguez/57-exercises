@@ -6,8 +6,8 @@ package ex26creditCardPayOffCalculator;
  * Constraints:
  * Prompt for the APR as a percentage (not a decimal).
  * Use a function calculateMonthsUntilPaidOff that returns the number of months.
- * Round fractions of a cent up to the next cent.
- * Note: I used formula #3 on this website https://brownmath.com/bsci/loan.htm
+ * Round up to the next month.
+ * Note: I obtained the formula (#3) from this website https://brownmath.com/bsci/loan.htm
  * Created by Yasmin on 8/3/2017
  */
 
@@ -19,13 +19,23 @@ public class CreditCardPayOffCalculator {
     public CreditCardPayOffCalculator(double creditCardBalance, double  apr, double monthlyPayment){
         this.creditCardBalance = creditCardBalance;
         this.monthlyApr = apr / 12 / 100;
+        checkPaymentIsNot0(monthlyPayment);
         this.monthlyPayment = monthlyPayment;
     }
 
-    public double calculateMonthsUntilPaidOff(){
-        return -Math.log10( (1  - monthlyApr * creditCardBalance / monthlyPayment)) / Math.log10(1 + monthlyApr);
+    public int calculateMonthsUntilPaidOff() {
+        if (monthlyApr == 0) {
+            return (int) Math.round(creditCardBalance / monthlyPayment);
+        }
+        else{
+            return (int) Math.round(-Math.log10((1 - monthlyApr * creditCardBalance / monthlyPayment)) /
+                    Math.log10(1 + monthlyApr));
+        }
+    }
 
-       //Original formula:
-        // -(Math.log( 1  - (monthlyApr * creditCardBalance / monthlyPayment))) / (Math.log(1 + monthlyApr));
+    private void checkPaymentIsNot0(double number){
+        if (number <=0){
+            throw new IllegalArgumentException("This loan will never be paid off.");
+        }
     }
 }
