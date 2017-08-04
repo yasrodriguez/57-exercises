@@ -17,9 +17,10 @@ public class CreditCardPayOffCalculator {
     private double monthlyPayment;
 
     public CreditCardPayOffCalculator(double creditCardBalance, double  apr, double monthlyPayment){
+        checkBalanceIsGreaterThan0(creditCardBalance);
         this.creditCardBalance = creditCardBalance;
         this.monthlyApr = apr / 12 / 100;
-        checkPaymentIsNot0(monthlyPayment);
+        checkPaymentIsGreaterThan0(monthlyPayment);
         this.monthlyPayment = monthlyPayment;
     }
 
@@ -33,9 +34,15 @@ public class CreditCardPayOffCalculator {
         }
     }
 
-    private void checkPaymentIsNot0(double number){
-        if (number <=0){
+    private void checkPaymentIsGreaterThan0(double amount) {
+        if (amount <= 0) {
             throw new IllegalArgumentException("This loan will never be paid off.");
         }
+    }
+
+    private void checkBalanceIsGreaterThan0(double amount ){
+    if (amount <= 0) {
+        throw new IllegalArgumentException("There is no balance to pay!");
+    }
     }
 }

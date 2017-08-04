@@ -21,22 +21,9 @@ public class CreditCardPayOffCalculatorTest {
     }
 
     @Test
-    public void all_0() throws Exception{
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("This loan will never be paid off.");
-        CreditCardPayOffCalculator ccpaycalc = new CreditCardPayOffCalculator(100, 5.5, 0);
-    }
-
-    @Test
     public void apr_is_0() throws Exception{
         CreditCardPayOffCalculator ccpaycalc = new CreditCardPayOffCalculator(1000, 0, 100);
         assertEquals(10, ccpaycalc.calculateMonthsUntilPaidOff());
-    }
-
-    @Test
-    public void balance_is_0() throws Exception{
-       CreditCardPayOffCalculator ccpaycalc = new CreditCardPayOffCalculator(0, 5.5, 100);
-        assertEquals(0, ccpaycalc.calculateMonthsUntilPaidOff());
     }
 
     @Test
@@ -44,5 +31,26 @@ public class CreditCardPayOffCalculatorTest {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("This loan will never be paid off.");
         CreditCardPayOffCalculator ccpaycalc = new CreditCardPayOffCalculator(100, 5.5, 0);
+    }
+
+    @Test
+    public void monthly_payment_is_negative() throws Exception{
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("This loan will never be paid off.");
+        CreditCardPayOffCalculator ccpaycalc = new CreditCardPayOffCalculator(100, 5.5, -5);
+    }
+
+    @Test
+    public void credit_card_balance_is_0() throws Exception{
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("There is no balance to pay!");
+        CreditCardPayOffCalculator ccpaycalc = new CreditCardPayOffCalculator(0, 5.5, 50);
+    }
+
+    @Test
+    public void credit_card_balance_is_negative() throws Exception{
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("There is no balance to pay!");
+        CreditCardPayOffCalculator ccpaycalc = new CreditCardPayOffCalculator(-10, 8, 20);
     }
 }
