@@ -1,5 +1,7 @@
 package ex27inputValidator;
 
+import java.util.IllegalFormatException;
+
 /**
  * Take a first name, last name, employee ID, and zip code. Use the following rules to validate the input and display
  * relevant error messages when input does not meet the rules.
@@ -16,23 +18,44 @@ package ex27inputValidator;
 
 public class InputValidator {
 
-    public static void validateInput(String firstName, String lastName, String employeeId, String zipCode){
-        try {
-            validateName(firstName);
-            validateName(lastName);
-        }
-        catch(NullPointerException nullPointer)
-        {
-            System.err.println(nullPointer);
+    private String firstName;
+    private String lastName;
+    private String employeeId;
+    private String zipCode;
+    private String errorMessage;
+
+    public InputValidator(String firstName, String lastName, String employeeId, String zipCode){
+
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.employeeId = employeeId;
+        this.zipCode = zipCode;
+        errorMessage = "";
+    }
+
+
+    public String validateInput(){
+            if (isNotNullOrEmpty(firstName)) {
+                isValidLength(firstName);
+            }
+            if(isNotNullOrEmpty(lastName)) {
+                isValidLength(lastName);
+            }
+            return errorMessage;
+    }
+
+    private void isValidLength(String name) {
+        if (name.length() < 2) {
+            errorMessage += "First name nor last name can't be shorter than 2 characters.\n";
         }
     }
 
-    private static void validateName(String name){
-        if(name.isEmpty()){
-            throw new IllegalArgumentException("First name nor last name can't be blank.");
-        }
-        if(name.length() < 2){
-            throw new IllegalArgumentException("First name nor last name can't be shorter than 2 characters.");
+        private boolean isNotNullOrEmpty(String value){
+            if(value == null || value.isEmpty()) {
+                errorMessage += "Blank or null values are not allowed.\n";
+                return false;
+             }
+             return true;
         }
     }
-}
+
