@@ -1,6 +1,6 @@
 package ex27inputValidator;
 
-import java.util.IllegalFormatException;
+import java.util.regex.Pattern;
 
 /**
  * Take a first name, last name, employee ID, and zip code. Use the following rules to validate the input and display
@@ -33,29 +33,39 @@ public class InputValidator {
         errorMessage = "";
     }
 
-
     public String validateInput(){
-            if (isNotNullOrEmpty(firstName)) {
-                isValidLength(firstName);
-            }
-            if(isNotNullOrEmpty(lastName)) {
-                isValidLength(lastName);
-            }
-            return errorMessage;
+        if (isNotNullOrEmpty(firstName))
+            isValidLength(firstName);
+        if(isNotNullOrEmpty(lastName))
+            isValidLength(lastName);
+        if(isNotNullOrEmpty(employeeId))
+            hasEmployeeIdFormat(employeeId);
+        if(isNotNullOrEmpty(zipCode))
+            isNumeric(zipCode);
+        return errorMessage;
     }
 
-    private void isValidLength(String name) {
-        if (name.length() < 2) {
+    private boolean isNotNullOrEmpty(String value){
+        if(value == null || value.isEmpty()) {
+            errorMessage += "Blank or null values are not allowed.\n";
+            return false;
+         }
+         return true;
+    }
+
+    private void isValidLength(String aName) {
+        if (aName.length() < 2)
             errorMessage += "First name nor last name can't be shorter than 2 characters.\n";
-        }
     }
 
-        private boolean isNotNullOrEmpty(String value){
-            if(value == null || value.isEmpty()) {
-                errorMessage += "Blank or null values are not allowed.\n";
-                return false;
-             }
-             return true;
-        }
+    private void hasEmployeeIdFormat(String employeeId){
+        if(! Pattern.matches("[a-zA-Z]{2}[-][0-9]{4}", employeeId))
+            errorMessage += "Employee ID must be have 2 letters and 4 numbers like AB-1234.\n";
     }
+
+    private void isNumeric(String value){
+        if (! Pattern.matches("^[0-9]+$",value))
+            errorMessage += "Zip code must be a number.\n";
+    }
+}
 
