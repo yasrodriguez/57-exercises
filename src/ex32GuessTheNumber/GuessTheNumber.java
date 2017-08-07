@@ -16,15 +16,21 @@ public class GuessTheNumber {
 
     private Random random;
     private int level;
+    private int randomNumber;
+    private int numberOfGuesses;
 
     public GuessTheNumber(int level){
         random = new Random();
         setLevel(level);
+        randomNumber = generateRandomNumber();
+        numberOfGuesses = 0;
     }
 
-    public GuessTheNumber(int level, long seed){
+    public GuessTheNumber(int level, long seed) {
         random = new Random(seed);
         setLevel(level);
+        randomNumber = generateRandomNumber();
+        numberOfGuesses = 0;
     }
 
     private void setLevel(int level){
@@ -33,9 +39,7 @@ public class GuessTheNumber {
         this.level = level;
     }
 
-    public int generateRandomNumber(){
-
-
+    private int generateRandomNumber(){
         if(level == 1)
             return random.nextInt(10) + 1;
         else if(level == 2)
@@ -44,9 +48,23 @@ public class GuessTheNumber {
             return random.nextInt(1000) + 1;
         }
 
-    public static void main(String[] args) {
+    public String play(int guess) {
 
-        GuessTheNumber gtn = new GuessTheNumber(0, 15);
-        System.out.println(gtn.generateRandomNumber());
+            numberOfGuesses++;
+
+            if (guess < randomNumber)
+                return "Too Low";
+            else if (guess > randomNumber)
+                return "Too High";
+            else
+                return "Equal";
+    }
+
+    public int getNumberOfGuesses(){
+        return numberOfGuesses;
+    }
+
+    public int getRandomNumber(){
+        return randomNumber;
     }
 }
