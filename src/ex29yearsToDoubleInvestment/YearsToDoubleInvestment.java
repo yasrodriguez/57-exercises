@@ -1,3 +1,5 @@
+package ex29yearsToDoubleInvestment;
+
 /**
  * Take a rate of return and return how many years it will take to
  * to double the investment, calculated as: 72/rate.

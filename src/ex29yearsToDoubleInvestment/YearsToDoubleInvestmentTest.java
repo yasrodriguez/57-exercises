@@ -1,3 +1,6 @@
+package ex29yearsToDoubleInvestment;
+
+import ex29yearsToDoubleInvestment.YearsToDoubleInvestment;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -14,7 +17,7 @@ public class YearsToDoubleInvestmentTest {
 
     @Test
     public void rate_is_5() throws Exception{
-        assertEquals(14.4,YearsToDoubleInvestment.calculateYears(5),0);
+        assertEquals(14.4, YearsToDoubleInvestment.calculateYears(5),0);
     }
 
     @Test
