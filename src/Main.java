@@ -5,6 +5,7 @@ import ex17BloodAlcoholCalculator.BloodAlcoholCalculator;
 import ex1sayingHello.SayingHello;
 import ex20multiStateSalesTaxCalculator.SalesTaxCalculator;
 import ex2characterCounter.CharacterCounter;
+import ex30multiplicationTablesGenerator.MultiplicationTablesGenerator;
 import ex3quotePrinter.QuotePrinter;
 import ex4madLib.MadLib;
 import ex5simpleMath.SimpleMath;
