@@ -80,14 +80,28 @@ public class HeartRateCalculatorTest {
     @Test
     public void when_resting_heart_rate_is_0() throws Exception{
         exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("If your heart rate is 0, you're dead!");
+        exception.expectMessage("If your heart rate is 0 or less, you're dead!");
         HashMap targetHeartRates = HeartRateCalculator.calculate(33,0);
     }
 
     @Test
     public void when_resting_heart_rate_and_age_is_0() throws Exception{
         exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("If your heart rate is 0, you're dead!");
+        exception.expectMessage("If your heart rate is 0 or less, you're dead!");
         HashMap targetHeartRates = HeartRateCalculator.calculate(0,0);
+    }
+
+    @Test
+    public void resting_heart_rate_is_less_than_0() throws Exception{
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("If your heart rate is 0 or less, you're dead!");
+        HashMap targetHeartRates = HeartRateCalculator.calculate(0,-10);
+    }
+
+    @Test
+    public void age_is_less_than_0() throws Exception{
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("You can't be less than 0 years!");
+        HashMap targetHeartRates = HeartRateCalculator.calculate(-10, 80);
     }
 }
