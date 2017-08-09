@@ -15,34 +15,32 @@ import java.util.Random;
 public class GuessTheNumber {
 
     private Random random;
-    private int level;
+    private Level selectedLevel;
     private int randomNumber;
     private int numberOfGuesses;
 
+    enum Level{
+        L1,L2,L3
+    }
+
     public GuessTheNumber(int level){
         random = new Random();
-        setLevel(level);
+        selectedLevel = Level.valueOf("L"+level);
         randomNumber = generateRandomNumber();
         numberOfGuesses = 0;
     }
 
-    public GuessTheNumber(int level, long seed) {
+     GuessTheNumber(int level, long seed) {
         random = new Random(seed);
-        setLevel(level);
+         selectedLevel = Level.valueOf("L"+level);
         randomNumber = generateRandomNumber();
         numberOfGuesses = 0;
-    }
-
-    private void setLevel(int level){
-        if(level < 1 || level > 3)
-            throw new IllegalArgumentException("Level must be a number from 1 to 3.");
-        this.level = level;
     }
 
     private int generateRandomNumber(){
-        if(level == 1)
+        if(selectedLevel == Level.L1)
             return random.nextInt(10) + 1;
-        else if(level == 2)
+        else if(selectedLevel == Level.L2)
             return random.nextInt(100) + 1;
         else
             return random.nextInt(1000) + 1;

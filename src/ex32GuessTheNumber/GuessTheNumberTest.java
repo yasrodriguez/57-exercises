@@ -95,14 +95,4 @@ public class GuessTheNumberTest {
         gtn.play(3);
         assertEquals(4, gtn.getNumberOfGuesses());
     }
-
-    @Rule
-    public ExpectedException exception = ExpectedException.none();
-
-    @Test
-    public void wrong_level() throws Exception{
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Level must be a number from 1 to 3.");
-        GuessTheNumber gtn = new GuessTheNumber(4);
-    }
 }
