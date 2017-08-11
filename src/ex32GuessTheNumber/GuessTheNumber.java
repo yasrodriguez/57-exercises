@@ -20,27 +20,27 @@ public class GuessTheNumber {
     private int numberOfGuesses;
 
     enum Level{
-        L1,L2,L3
+        Beginner,Intermediate,Advanced
     }
 
-    public GuessTheNumber(int level){
+    public GuessTheNumber(Level level){
         random = new Random();
-        selectedLevel = Level.valueOf("L"+level);
+        selectedLevel = level;
         randomNumber = generateRandomNumber();
         numberOfGuesses = 0;
     }
 
-     GuessTheNumber(int level, long seed) {
+     GuessTheNumber(Level level, long seed) {
         random = new Random(seed);
-         selectedLevel = Level.valueOf("L"+level);
+        selectedLevel = level;
         randomNumber = generateRandomNumber();
         numberOfGuesses = 0;
     }
 
     private int generateRandomNumber(){
-        if(selectedLevel == Level.L1)
+        if(selectedLevel == Level.Beginner)
             return random.nextInt(10) + 1;
-        else if(selectedLevel == Level.L2)
+        else if(selectedLevel == Level.Intermediate)
             return random.nextInt(100) + 1;
         else
             return random.nextInt(1000) + 1;

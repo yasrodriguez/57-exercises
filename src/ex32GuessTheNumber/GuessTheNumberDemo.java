@@ -2,6 +2,7 @@ package ex32GuessTheNumber;
 
 import java.util.Scanner;
 
+
 /**
  * This program implements Guess The Number.
  * Created by Yasmin on 8/7/2017
@@ -11,7 +12,7 @@ public class GuessTheNumberDemo {
 
     private Scanner s;
     private String result;
-    private int level;
+    private GuessTheNumber.Level level;
     private GuessTheNumber gtn;
 
     public GuessTheNumberDemo(){
@@ -21,17 +22,28 @@ public class GuessTheNumberDemo {
     }
 
     private void createNewGame(){
-        System.out.print("Enter a level from 1 to 3: ");
-        level = s.nextInt();
+        System.out.print("Enter your level: 1 for Beginner, 2 for Intermediate, or  3 Advanced ");
+        int number = s.nextInt();
+        switch(number){
+            case 1:
+                level = GuessTheNumber.Level.Beginner;
+                break;
+            case 2:
+                level = GuessTheNumber.Level.Intermediate;
+                break;
+            case 3:
+                level = GuessTheNumber.Level.Advanced;
+                break;
+        }
         gtn =  new GuessTheNumber(level);
     }
 
     private void askForGuess() {
 
         while (!result.equals("Equal")) {
-            if (level == 1)
+            if (level == GuessTheNumber.Level.Beginner)
                 System.out.print("You must enter a number from 1 to 10: ");
-            else if (level == 2)
+            else if (level == GuessTheNumber.Level.Intermediate)
                 System.out.print("You must enter a number from 1 to 100: ");
             else
                 System.out.print("You must enter a number from 1 to 1000: ");

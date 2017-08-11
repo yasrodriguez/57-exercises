@@ -13,15 +13,15 @@ public class GuessTheNumberPlayer {
     private int lowerBoundary;
     private int upperBoundary;
 
-    public GuessTheNumberPlayer(int level){
+    public GuessTheNumberPlayer(GuessTheNumber.Level level){
 
         gtn = new GuessTheNumber(level);
         lowerBoundary = 1;
 
-        if(level == 1){
+        if(level == GuessTheNumber.Level.Beginner){
             upperBoundary = 10;
         }
-        else if (level == 2){
+        else if (level == GuessTheNumber.Level.Intermediate){
             upperBoundary = 100;
         }
         else{
@@ -59,15 +59,15 @@ public class GuessTheNumberPlayer {
 
     public static void main(String[] args){
         System.out.println("Playing level 1:");
-        GuessTheNumberPlayer gtnp1 = new GuessTheNumberPlayer(1);
+        GuessTheNumberPlayer gtnp1 = new GuessTheNumberPlayer(GuessTheNumber.Level.Beginner);
         gtnp1.playTheBestGuess();
 
         System.out.println("Playing level 2:");
-        GuessTheNumberPlayer gtnp2 = new GuessTheNumberPlayer(2);
+        GuessTheNumberPlayer gtnp2 = new GuessTheNumberPlayer(GuessTheNumber.Level.Intermediate);
         gtnp2.playTheBestGuess();
 
         System.out.println("Playing level 3:");
-        GuessTheNumberPlayer gtnp3 = new GuessTheNumberPlayer(3);
+        GuessTheNumberPlayer gtnp3 = new GuessTheNumberPlayer(GuessTheNumber.Level.Advanced);
         gtnp3.playTheBestGuess();
     }
 }
