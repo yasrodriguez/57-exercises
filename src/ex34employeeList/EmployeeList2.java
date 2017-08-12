@@ -24,18 +24,16 @@ public class EmployeeList2 {
         employees.add("Uma Thurman");
     }
 
-    public String getEmployeeList(){
-        String list = "";
-
-        for(String employee: employees){
-            list += employee + '\n';
-        }
-        System.out.println(list);
-        return list;
+    public ArrayList<String> getEmployees(){
+        return employees;
     }
 
     public void removeEmployee(String employeeName){
-        employees.remove(employeeName);
+        if(! employees.contains(employeeName)){
+            throw new IllegalArgumentException("That employee does not exist.");
+        }
+        else{
+            employees.remove(employeeName);
+        }
     }
-
 }

@@ -1,7 +1,5 @@
 package ex34employeeList;
 
-import java.util.Arrays;
-
 /**
  * Create a list of employee names. Print out the list, each employee in its own line. Then, ask for an employee
  * name to remove. Print the remaining employee list.  This version of the Employee List is going to use an array.
@@ -11,7 +9,7 @@ import java.util.Arrays;
 
 public class EmployeeList {
     private String[] employees;
-    private int numberOfEmployees;
+    private int totalEmployees;
 
     public EmployeeList() {
         employees = new String[8];
@@ -23,37 +21,36 @@ public class EmployeeList {
         employees[5] = "Samuel Jackson";
         employees[6] = "John Travolta";
         employees[7] = "Uma Thurman";
-        numberOfEmployees = employees.length;
+       totalEmployees = employees.length;
     }
 
     public String getEmployeeList(){
         String list = "";
 
-        for(String employee: employees){
-            list += employee + '\n';
+        for(int i = 0; i < totalEmployees; i++){
+            list += employees[i] + '\n';
         }
-        System.out.println(list);
         return list;
     }
 
     public void removeEmployee(String employeeName){
         boolean found = false;
 
-        for(int i = 0; i < numberOfEmployees && ! found; i++){
+        for(int i = 0; i < totalEmployees && ! found; i++){
             if(employees[i].equals(employeeName)) {
                 found = true;
-                shiftEmployeesBack(i);
+                copyArrayWithoutEmployee(i);
             }
+        }
+
+        if (! found){
+            throw new IllegalArgumentException("That employee does not exist.");
         }
     }
 
-    private void shiftEmployeesBack(int startIndex){
-        if(startIndex != numberOfEmployees - 1){
-            for(int i = startIndex; i < numberOfEmployees - 1; i++){
-                employees[i] = employees [i + 1];
-            }
-        }
-        numberOfEmployees--;
-        employees = Arrays.copyOf(employees, numberOfEmployees);
+    private void copyArrayWithoutEmployee(int employeeIndexToRemove){
+        int numberOfElementsToCopy = totalEmployees - (employeeIndexToRemove + 1);
+        System.arraycopy(employees, employeeIndexToRemove + 1, employees, employeeIndexToRemove, numberOfElementsToCopy);
+        totalEmployees--;
     }
 }
