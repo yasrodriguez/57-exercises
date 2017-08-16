@@ -14,17 +14,20 @@ import java.util.Collections;
 public class RecordSorter {
 
     public static ArrayList<Employee> sort(ArrayList<Employee> list){
-
         Collections.sort(list);
         return list;
     }
 
-    public static void print(ArrayList<Employee> list){
-        //TODO: Fix printf so columns are aligned properly
-        System.out.printf("%-25s|%-15s|%-12s", "Name", "Position", "Separation Date\n");
+    public static StringBuilder getReadyForPrinting(ArrayList<Employee> list){
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format("%-25s| %-30s| %s", "Name", "Position", "Separation Date\n"));
+        sb.append("-----------------------------------------------------------------------------\n");
+
         for(Employee employee : list){
-            System.out.printf("%-25s|%-15s|%-12s", employee.getFirstName() + " " + employee.getLastName(),
-                    employee.getPosition(), employee.getSeparationDate() + "\n");
+            sb.append(String.format("%-25s| %-30s| %s", employee.getFirstName() + " " + employee.getLastName(),
+                    employee.getPosition(), (employee.getSeparationDate()== null ? "" : employee.getSeparationDate()) + "\n"));
         }
+
+        return sb;
     }
 }

@@ -38,7 +38,7 @@ public class Employee implements Comparable<Employee> {
 
     @Override
    public String toString(){
-        return getClass().getSimpleName() + '[' + firstName + ", " + lastName + ", " + position + ", " + separationDate + ']';
+        return getClass().getSimpleName() + "[" + firstName + ", " + lastName + ", " + position + ", " + separationDate + "]";
    }
 
    @Override
