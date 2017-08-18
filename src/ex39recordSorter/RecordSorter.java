@@ -30,12 +30,12 @@ public class RecordSorter {
         return sb;
     }
 
-    private static String getEmployeeData(Employee employee) {
+    public static String getEmployeeData(Employee employee) {
         return String.format("%-25s| %-30s| %s\n", employee.getFullName(), employee.getPosition(),
                 (employee.getSeparationDate()== null ? "" : employee.getSeparationDate()));
     }
 
-    private static String getHeader() {
+    public static String getHeader() {
         return (String.format("%-25s| %-30s| %s\n" +
                 "-----------------------------------------------------------------------------\n",
                 "Name", "Position", "Separation Date"));
