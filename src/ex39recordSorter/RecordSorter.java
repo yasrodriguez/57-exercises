@@ -20,14 +20,24 @@ public class RecordSorter {
 
     public static StringBuilder getReadyForPrinting(ArrayList<Employee> list){
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format("%-25s| %-30s| %s", "Name", "Position", "Separation Date\n"));
-        sb.append("-----------------------------------------------------------------------------\n");
+
+        sb.append(getHeader());
 
         for(Employee employee : list){
-            sb.append(String.format("%-25s| %-30s| %s", employee.getFirstName() + " " + employee.getLastName(),
-                    employee.getPosition(), (employee.getSeparationDate()== null ? "" : employee.getSeparationDate()) + "\n"));
+            sb.append(getEmployeeData(employee));
         }
 
         return sb;
+    }
+
+    private static String getEmployeeData(Employee employee) {
+        return String.format("%-25s| %-30s| %s\n", employee.getFullName(), employee.getPosition(),
+                (employee.getSeparationDate()== null ? "" : employee.getSeparationDate()));
+    }
+
+    private static String getHeader() {
+        return (String.format("%-25s| %-30s| %s\n" +
+                "-----------------------------------------------------------------------------\n",
+                "Name", "Position", "Separation Date"));
     }
 }

@@ -10,12 +10,14 @@ import java.time.LocalDate;
 public class Employee implements Comparable<Employee> {
     private String firstName;
     private String lastName;
+    private String fullName;
     private String position;
     private LocalDate separationDate;
 
     public Employee(String firstName, String lastName, String position, LocalDate separationDate){
         this.firstName = firstName;
         this.lastName = lastName;
+        this.fullName = firstName + " " + lastName;
         this.position = position;
         this.separationDate = separationDate;
     }
@@ -26,6 +28,10 @@ public class Employee implements Comparable<Employee> {
 
     public String getLastName() {
         return lastName;
+    }
+
+    public String getFullName(){
+        return fullName;
     }
 
     public String getPosition() {
