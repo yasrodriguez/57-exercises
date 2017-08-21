@@ -19,36 +19,33 @@ public class NameSorter {
     private ArrayList<String> names = new ArrayList<>();
 
     public void readFile(String filename) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(filename));
-
-        String line;
-        do{
-            line = reader.readLine();
-
-            if(line != null){
-                names.add(line);
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))){
+            String line = reader.readLine();
+            if (line == null) {
+                System.out.print("File is empty.");
+            } else {
+                while (line != null) {
+                    names.add(line);
+                    line = reader.readLine();
+                }
+                Collections.sort(names);
             }
-        }while(line != null);
-
-        Collections.sort(names);
-
-        reader.close();
+        }
     }
 
     public void writeToFile(String filename) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter (filename));
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
 
-        writer.write("Total of " + names.size() + " names");
-        writer.newLine();
-        writer.write("----------------------------");
-        writer.newLine();
-
-
-        for(String name: names){
-            writer.write(name);
+            writer.write("Total of " + names.size() + " names");
             writer.newLine();
-        }
+            writer.write("----------------------------");
+            writer.newLine();
 
-        writer.close();
+
+            for (String name : names) {
+                writer.write(name);
+                writer.newLine();
+            }
+        }
     }
 }

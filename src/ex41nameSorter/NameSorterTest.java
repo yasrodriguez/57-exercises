@@ -2,10 +2,14 @@ package ex41nameSorter;
 
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
+import static org.junit.Assert.assertEquals;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import junitx.framework.FileAssert;
-import org.junit.rules.ExpectedException;
+
 
 
 /**
@@ -43,7 +47,25 @@ public class NameSorterTest {
 
         //act
         ns.readFile("src/ex41nameSorter/asdf.txt");
+    }
 
+    @Test
+    public void test_that_an_empty_file_returns_a_message_and_is_not_processed() throws Exception{
+        //Setup to capture standard output
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        //arrange
+        NameSorter ns = new NameSorter();
+
+        //act
+        ns.readFile("src/ex41nameSorter/empty-file.txt");
+
+        //assert
+        assertEquals("File is empty.", outContent.toString());
+
+        //cleanup
+        System.setOut(null);
 
 
     }
