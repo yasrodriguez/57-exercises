@@ -20,12 +20,24 @@ public class Employee {
         return firstName;
     }
 
+    public int getFirstNameLength(){
+        return firstName.length();
+    }
+
     public String getLastName() {
         return lastName;
     }
 
+    public int getLastNameLength(){
+        return lastName.length();
+    }
+
     public double getSalary() {
         return salary;
+    }
+
+    public int getSalaryLength(){
+        return String.valueOf(salary).length();
     }
 
     public String toString(){

@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static java.util.Comparator.comparing;
+
 /**
  * Parse a csv file and display the results formatted in a table.
  * Constraints:
@@ -43,13 +45,33 @@ public class CsvParser {
     public String getEmployeeReport(){
         StringBuilder sb = new StringBuilder();
 
-        //TODO: Make each field one space longer than the longest string
-        //TODO: Add commas to the salary
-        for (Employee e : employees) {
-            sb.append(String.format("%-15s %-15s $%7.2f\n", e.getLastName(), e.getFirstName(), e.getSalary()));
-        }
+        int columnWidthLastName = getMaximumFieldLength("LastName") + 1;
+        int columnWidthFirstName = getMaximumFieldLength("FirstName") + 1;
+        int columnWidthSalary = getMaximumFieldLength("Salary") + 2;
 
+        for (Employee e : employees) {
+            sb.append(String.format("%-"+ columnWidthLastName + "s" + "%-" + columnWidthFirstName + "s" +
+                    "$%," + columnWidthSalary + ".2f%n", e.getLastName(), e.getFirstName(), e.getSalary()));
+        }
         return sb.toString();
     }
+
+    public int getMaximumFieldLength(String fieldName) {
+        switch(fieldName){
+            case "LastName":{
+                return employees.stream().max(comparing(Employee::getLastNameLength)).get().getLastNameLength();
+            }
+            case "FirstName":{
+                return employees.stream().max(comparing(Employee::getFirstNameLength)).get().getFirstNameLength();
+            }
+            case "Salary":{
+                return employees.stream().max(comparing(Employee::getSalaryLength)).get().getSalaryLength();
+            }
+            default:{
+                return 0;
+            }
+        }
+    }
 }
+
 
