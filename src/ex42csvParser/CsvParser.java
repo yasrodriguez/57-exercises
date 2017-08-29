@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class CsvParser {
 
-    public static ArrayList<Employee> readFile(String filename) throws IOException {
+        public static ArrayList<Employee> readFile(String filename) throws IOException {
         ArrayList<Employee> employees = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
