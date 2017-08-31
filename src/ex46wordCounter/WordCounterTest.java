@@ -14,5 +14,7 @@ public class WordCounterTest {
     public void test()throws Exception{
         WordCounter wc = new WordCounter();
         wc.count("src/ex46wordCounter/annabel-lee.txt");
+        wc.generateHistogram();
     }
+
 }
