@@ -1,11 +1,13 @@
 package ex46wordCounter;
 
-import java.io.*;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Comparator;
 import java.util.Scanner;
-import java.util.TreeMap;
-import java.util.ArrayList;
-import java.util.Map.Entry;
+import java.util.TreeSet;
 
 
 /**
@@ -16,9 +18,9 @@ import java.util.Map.Entry;
  */
 
 public class WordCounter {
-    private TreeMap<String, Integer> wordInventory = new TreeMap<>();
+    private TreeSet<Word> wordInventory = new TreeSet<>();
 
-    public void count(String filename)throws IOException {
+    public void count(String filename) throws IOException {
         File file = new File(filename);
         if (file.length() == 0) {
             throw new IllegalArgumentException("File is empty.");
@@ -26,39 +28,54 @@ public class WordCounter {
 
         try (Scanner s = new Scanner(new BufferedReader(new FileReader(file)))) {
 
-           //TODO: Ignore special characters and punctuation
+            //TODO: Ignore special characters and punctuation
 
             while (s.hasNext()) {
-                String word = s.next();
+                String input = s.next();
+                //System.out.println(input);  //Test
+                Word word = new Word(input, 0);
 
-                if (!wordInventory.containsKey(word)) {
-                    wordInventory.put(word, 1);
+                if (!wordInventory.contains(word)) {
+                    word.setCount(1);
+                    wordInventory.add(word);
+                    //System.out.println(word);  //Test
+                    //System.out.println(wordInventory);  //Test
                 } else {
-                    int previousCount = wordInventory.get(word);
-                    wordInventory.put(word, previousCount + 1);
+                    int currentCount = wordInventory.floor(word).getCount();
+                    wordInventory.floor(word).setCount(currentCount + 1);
                 }
             }
         }
+        //System.out.println(wordInventory);  //Test
     }
 
-    public String generateHistogram(){
-        ArrayList<Entry<String,Integer>> sortedWordInventory = sortByDescendingFrequency();
+        public String generateHistogram(){
+       TreeSet<Word> sortedWordInventory = new TreeSet<>(new DescendingCount());
+       sortedWordInventory.addAll(wordInventory);
+       //System.out.println(sortedWordInventory);
+
+            for(Word w: sortedWordInventory){
+                System.out.printf("%-15s ", w.getName());
+                int count = w.getCount();
+                for(int i = 1; i <= count; i++){
+                    System.out.print("*");
+                }
+                System.out.println();
+            }
 
         //TODO: Print the words and their counts using *
         return "";
     }
 
-    private ArrayList<Entry<String, Integer>> sortByDescendingFrequency(){
-        ArrayList<Entry<String,Integer>> words = new ArrayList<>();
-        words.addAll(wordInventory.entrySet());
-        words.sort(new DescendingValueComparator());
-        System.out.println(words);
-        return words;
-    }
+    class DescendingCount implements Comparator<Word> {
 
-    class DescendingValueComparator implements Comparator<Entry<String,Integer>>{
-        public int compare(Entry<String,Integer> e1, Entry<String,Integer> e2){
-            return e2.getValue().compareTo(e1.getValue());
+        @Override
+        public int compare(Word e1, Word e2) {
+            int countComparison =  e2.getCount() - e1.getCount();
+            if(countComparison != 0){
+                return countComparison;
+            }
+            return e1.getName().compareTo(e2.getName());
         }
     }
 }
