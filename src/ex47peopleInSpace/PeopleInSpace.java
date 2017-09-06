@@ -6,7 +6,6 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.*;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -41,12 +40,10 @@ public class PeopleInSpace {
          }
      }
 
-    public void read() throws IOException, ParseException{
+    public void read(JsonGetterInterface jsonGetter) throws IOException, ParseException{
         JSONParser parser = new JSONParser();
-
-        URL openNotifyApi = new URL("http://api.open-notify.org/astros.json");
-        try(BufferedReader reader = new BufferedReader(new InputStreamReader(openNotifyApi.openStream()))) {
-            JSONObject json = (JSONObject) parser.parse(reader);
+        String jsonData = jsonGetter.getJson();
+            JSONObject json = (JSONObject) parser.parse(jsonData);
 
             JSONArray people = (JSONArray) json.get("people");
             Iterator i = people.iterator();
@@ -57,7 +54,7 @@ public class PeopleInSpace {
                 String craft = (String) person.get("craft");
                 peopleInSpace.add(new Person(name, craft));
             }
-        }
+
     }
 
     public String generateReport(){
