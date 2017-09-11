@@ -20,12 +20,18 @@ public class WeatherProvider {
      * "main":{"temp":55.62,"pressure":1019,"humidity":83,"temp_min":289.82,"temp_max":295.37},
      */
 
-    public String getTemperature(WeatherData data, String city) throws ParseException, IOException{
+    public String getTemperature(WeatherDataGetter data, String city) throws ParseException, IOException{
         String weatherData = data.getWeatherData(city);
         JSONParser parser = new JSONParser();
         JSONObject weatherResults = (JSONObject)parser.parse(weatherData);
-        JSONObject main = (JSONObject) weatherResults.get("main");
-        double temp = (double) main.get("temp");
-        return "The temperature in " + city + " is " + temp + " Fahrenheit.";
+        long httpResponse = (long) weatherResults.get("cod");
+        if(httpResponse == 200){
+            JSONObject main = (JSONObject) weatherResults.get("main");
+            double temp = (double) main.get("temp");
+            return String.format("The temperature in %s is %s Fahrenheit.", city, temp);
+        }
+        else{
+            throw new IOException ("Temperature information is not available.");
+        }
     }
 }

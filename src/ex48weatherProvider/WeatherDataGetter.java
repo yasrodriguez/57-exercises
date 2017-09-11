@@ -1,6 +1,6 @@
 package ex48weatherProvider;
 import java.io.IOException;
 
-public interface WeatherData {
+public interface WeatherDataGetter {
     String getWeatherData(String city) throws IOException;
 }

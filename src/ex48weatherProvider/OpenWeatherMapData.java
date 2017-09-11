@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 
-public class OpenWeatherMapData implements WeatherData {
+public class OpenWeatherMapData implements WeatherDataGetter {
     String apiKey;
 
      public OpenWeatherMapData(String apiKey) {
