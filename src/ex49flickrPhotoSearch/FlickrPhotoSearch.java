@@ -1,9 +1,18 @@
 package ex49flickrPhotoSearch;
 
-import java.io.BufferedReader;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.URL;
+import java.nio.charset.Charset;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
+import java.util.Iterator;
+import static java.nio.file.Files.newBufferedWriter;
 
 /**
  * Take in a search string and display photographs that match the search. Use Flickr's public photo feed as
@@ -13,25 +22,69 @@ import java.net.URL;
 
 public class FlickrPhotoSearch {
 
-    public String getPictures(String searchString) throws IOException {
-        URL apiUrl = new URL(String.format("https://api.flickr.com/services/feeds/photos_public.gne?tags=%s&format=json"
-                , searchString));
-        StringBuilder picData = new StringBuilder();
+    ArrayList<URL> links = new ArrayList<>();
 
-        try(BufferedReader reader = new BufferedReader(new InputStreamReader(apiUrl.openStream()))){
-            String line;
-            while((line = reader.readLine()) != null){
-                picData.append(line);
-            }
+    public int getNumberOfLinks() {
+        return links.size();
+    }
+
+    public void search(String searchString, PictureFeedGetter p) throws IOException, ParseException{
+        if(searchString == null){
+            throw new IllegalArgumentException("Search string can't be null.");
         }
-        return picData.toString();
+        if(p == null){
+            throw new IllegalArgumentException("Picture feed can't be null.");
+        }
+
+        String pictureData = p.getPictureFeed(searchString);
+        parse(pictureData);
+        String imagesHtml = generateHtmlForImages();
+        display(searchString, imagesHtml);
     }
 
-    public void parse(String data){
+      private void parse(String data) throws ParseException, IOException{
+        JSONParser parser = new JSONParser();
+        JSONObject json = (JSONObject) parser.parse(data);
+        JSONArray pics = (JSONArray) json.get("items");
+        ArrayList<URL> links = new ArrayList<>();
 
+        Iterator i = pics.iterator();
+        while(i.hasNext()){
+            JSONObject pic = (JSONObject) i.next();
+            JSONObject media = (JSONObject) pic.get("media");
+            String link = (String) media.get("m");
+            links.add(new URL(link));
+        }
+        this.links = links;
     }
 
-    public void displayPics(){
+    private void display(String searchString, String imagesHtml)throws IOException {
+        try (BufferedWriter writer = newBufferedWriter(Paths.get("src\\ex49flickrPhotoSearch\\index.html"), Charset.forName("UTF-8"), StandardOpenOption.CREATE)) {
+            String htmlTemplate =
+                    "<!doctype html>\n" +
+                            "\n" +
+                            "<html lang=\"en\">\n" +
+                            "<head>\n" +
+                            "  <meta charset=\"utf-8\">\n" +
+                            "  <title>" + "Flickr Pictures" + "</title>\n" +
+                            "</head>\n" +
+                            "<body>\n" +
+                            "   <p>Search results for " + searchString + "</p>\n" +
+                            "<div>\n" +
+                            imagesHtml +
+                            "</div>\n" +
+                            "</body>\n" +
+                            "</html>";
+            writer.write(htmlTemplate);
+        }
+    }
 
+    private String generateHtmlForImages(){
+        StringBuilder imagesHtml = new StringBuilder();
+        for(URL link: links) {
+            String line = String.format("<img src=\"%s\">\n", link);
+            imagesHtml.append(line);
+        }
+        return imagesHtml.toString();
     }
 }
