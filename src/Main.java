@@ -3,9 +3,7 @@ import ex15passwordValidator.PasswordValidator;
 import ex16DrivingAgeChecker.DrivingAgeChecker;
 import ex17BloodAlcoholCalculator.BloodAlcoholCalculator;
 import ex1sayingHello.SayingHello;
-import ex20multiStateSalesTaxCalculator.SalesTaxCalculator;
 import ex2characterCounter.CharacterCounter;
-import ex30multiplicationTablesGenerator.MultiplicationTablesGenerator;
 import ex3quotePrinter.QuotePrinter;
 import ex4madLib.MadLib;
 import ex5simpleMath.SimpleMath;
@@ -20,9 +18,8 @@ import ex13compoundInterestCalculator.CompoundInterestCalculator;
 import ex14taxCalculator.TaxCalculator;
 
 /**
- * Used to call all 57 exercises
+ * Used to call exercises 0 - 17. Uncomment the line you want to execute.
  */
-
 
 public class Main {
     public static void main(String args[]) {
@@ -43,8 +40,7 @@ public class Main {
 //        TaxCalculator.execute();
 //        PasswordValidator.execute();
 //        DrivingAgeChecker.execute();
-//        BloodAlcoholCalculator.execute();
-//
+        BloodAlcoholCalculator.execute();
     }
 }
 
