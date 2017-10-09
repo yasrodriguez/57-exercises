@@ -27,4 +27,13 @@ public class TmdbDataGetter implements MovieDataGetter {
             return reader.readLine();
         }
     }
+
+    @Override
+    public  String getMovieDetails(String id) throws IOException {
+        String searchUrl = String.format("http://api.themoviedb.org/3/movie/%s?api_key=%s", id, apiKey);
+        URL url = new URL(searchUrl);
+        try(BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()))){
+            return reader.readLine();
+        }
+    }
 }
