@@ -16,8 +16,27 @@ import java.io.IOException;
 
 public class MovieSearch {
 
-    public String parseMovieList(MovieDataGetter m, String search) throws IOException, ParseException {
-        String movieData = m.getMovieList(search);
+    /**
+     * Parses movie data (in JSON) for all the movies matching the user search and displays selected values to the user
+     * in a nice format.
+     *
+     * @param m List of movies returned by the search, in JSON format
+     * @param searchTerms Search terms
+     * @return List of movies that match the user search
+     * @throws IOException If an I/O error occurs
+     * @throws ParseException If a JSON parsing error occurs
+     */
+    public String parseMovieList(MovieDataGetter m, String searchTerms) throws IOException, ParseException {
+        if (m == null) {
+            throw new IllegalArgumentException("You can't have null movie data.");
+        }
+
+        if (searchTerms == null || searchTerms.isEmpty()){
+            throw new IllegalArgumentException("You can't have null or empty search criteria.");
+        }
+
+
+        String movieData = m.getMovieList(searchTerms);
         StringBuilder results = new StringBuilder();
 
         JSONParser parser = new JSONParser();
@@ -56,7 +75,25 @@ public class MovieSearch {
         return results.toString();
     }
 
+    /**
+     * Parses movie details (in JSON format) for the movie ID provided by the user and displays selected values to the
+     * user in a nice format.
+     *
+     * @param m Movie details returned by the search, in JSON format
+     * @param id Movie ID
+     * @return Details for the movie that match the movie ID
+     * @throws IOException If an I/O error occurs
+     * @throws ParseException If a JSON parsing error occurs
+     */
     public String parseMovieDetails(MovieDataGetter m, String id) throws IOException, ParseException {
+        if (m == null) {
+            throw new IllegalArgumentException("You can't have null movie data.");
+        }
+
+        if (id == null || id.isEmpty()){
+            throw new IllegalArgumentException("You can't have null or empty movie ID.");
+        }
+
         String movieData = m.getMovieDetails(id);
         StringBuilder results = new StringBuilder();
 
@@ -119,6 +156,12 @@ public class MovieSearch {
         return results.toString();
     }
 
+    /**
+     * Takes the movie vote average and recommends to watch or not watch the movie.
+     *
+     * @param voteAverage the movie's vote average
+     * @return recommendation
+     */
     private String getRecommendation(double voteAverage) {
         final double MINIMUM_GOOD_RATING = 7.5;
         final double EPSILON = .0001;
@@ -131,6 +174,11 @@ public class MovieSearch {
         }
     }
 
+    /**
+     * Takes the movie run time and converts it from minutes to hours and minutes.
+     * @param runtime total runtime in minutes
+     * @return runtime in hours and minutes
+     */
     private String formatTime(long runtime) {
         int hours = (int) runtime / 60;
         int minutes = (int) runtime % 60;
