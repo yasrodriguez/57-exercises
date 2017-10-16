@@ -15,11 +15,11 @@ import javax.ws.rs.core.MediaType;
  */
 
 @Path("/currenttime")
-public class CurrentTime {
+public class CurrentDateTime {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getTime() {
+	public static String getDateTime() {
 		String dateTime = "{\"current_date\":\"" + LocalDate.now() + "\"" + ",\"current_time\":\"" + LocalTime.now()
 				+ "\"}";
 		return dateTime;

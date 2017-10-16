@@ -4,6 +4,12 @@ import javax.ws.rs.ApplicationPath;
 
 import org.glassfish.jersey.server.ResourceConfig;
 
+/**
+ * Contains configuration required for the web service server.
+ * 
+ * @author Yasmin
+ *
+ */
 @ApplicationPath("/rest")
 public class RestService extends ResourceConfig {
 
